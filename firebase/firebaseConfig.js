@@ -1,12 +1,5 @@
-// Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-import firebase from "firebase/compat/app";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+import { getAuth, createUserWithEmailAndPassword, connectAuthEmulator  } from "firebase/auth";
 const firebaseConfig = {
   apiKey: "AIzaSyDDOUEj5ZXHt_TvN10dbyj5Yg3xX1T5fus",
   authDomain: "demosoftwaretechnology.firebaseapp.com",
@@ -20,6 +13,9 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
-
-
+const auth = getAuth(app);
+connectAuthEmulator(auth, 'http://localhost:9099');
+const loginEmailPassword = async (email, password) => {
+    const userCredential = await createUserWithEmailAndPassword(auth, email, password); 
+    console.log(userCredential.user)
+}

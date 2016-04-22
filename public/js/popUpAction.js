@@ -17,7 +17,7 @@ const signinSwitchForgotpass = document.getElementsByClassName('switch__forgot-p
 
 
 
-openSignin.addEventListener('click', () => signInDialog.showModal());
+openSignin.addEventListener('click', () => signUpDialog.showModal());
 
 closeBtnSignIn.addEventListener('click', () => signInDialog.close());
 closeBtnSignUp.addEventListener('click', () => signUpDialog.close());

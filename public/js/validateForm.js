@@ -1,3 +1,4 @@
+import { register } from '../../firebase/firebaseConfig.js'
 /***********************************************Form sign in validation ***********************************************/
 //BUG see in html
 const btnSubmit = document.getElementsByClassName('login-area__submit')[0];
@@ -44,6 +45,12 @@ passwordIcon.addEventListener('click', function() {
 })
 
 /***********************************************Form sign up validation ***********************************************/
+const correctValidateSignUp = () => {
+    for(const key in validateSignUp)
+        if(validateSignUp[key] === false)
+            return false
+    return true
+}
 const validateSignUp = {
     username: false,
     phoneNumber: false,
@@ -152,6 +159,10 @@ const validateFormSignUp = () => {
                 validateSignUp.username = true;
         }
     }
+    if(correctValidateSignUp){
+        register(inputSignUpEmail.value, inputSignupPassword.value);
+    }
+
 }
 btnSubmitSignUp.addEventListener('click', validateFormSignUp);
 
@@ -217,12 +228,6 @@ forgotpassbtnSubmit.addEventListener('click', () => {
     }
 
 });
-const correctValidateSignUp = () => {
-    for(const key in validateSignUp)
-        if(validateSignUp[key] === false)
-            return false
-    return true
-}
 export {correctValidateSignUp};
 export{
     inputSignUpName,
