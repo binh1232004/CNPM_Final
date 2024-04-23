@@ -1,1 +1,0 @@
-các lệnh truy vấn cơ bản với database của firebase dùng js
