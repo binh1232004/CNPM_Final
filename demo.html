@@ -822,7 +822,7 @@
     //****************************** update list image *****************************
     function UpdateRole(){
       update(ref(db, "Role/" + role_id.value), {
-        Name: role_id.value,
+        Name: role_name.value,
       })
       .then(()=>{
         alert("data stored successfully");
