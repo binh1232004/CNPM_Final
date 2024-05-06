@@ -1,4 +1,4 @@
-<!--/  
+<!--
   link database:
   https://demosoftwaretechnology-default-rtdb.firebaseio.com/  
 -->
@@ -9,132 +9,846 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-      label{display: inline-block; width: 80px;}
-      input, select{width: 120px;}
+      label{display: inline-block; margin-right: 10px;}
+      input{width: 120px;}
+      header{margin: 20px 20px 20px 20px; font-weight: bold;}
+      body{text-align: center;}
     </style>
 </head>
 <body>
-    <label>Name</label> <input id = "Namebox" type="text"><br><br>
-    <lable>Rollno</lable> <input id="Rollbox" type = "text"><br><br>
-    <label>Section</label> <input id="Secbox" type="text"><br><br>
-    <label>Gender</label>
-    <select id="Genbox">
-        <option value="Male">Male</option>
-        <option value="Female">Female</option>
-    </select>
+  <!--header>Feedback</header>
+  <label>ID</label> <input id = "feedback_id" type="number"><br><br>
+  <label>First name</label> <input id="feedback_fname" type="text"><br><br>
+  <label>Last name</label> <input id="feedback_lname" type="text"><br><br>
+  <label>Email</label> <input id="feedback_email" type="text"><br><br>
+  <label>Phone</label> <input id="feedback_phone" type="text"><br><br>
+  <label>Title</label> <input id="feedback_title" type="text"><br><br>
+  <label>Content</label> <input id="feedback_content" type="text"><br><br>
 
-    <hr>
-    <button id="InsBtn">Insert</button>
-    <button id = "SelBtn">Select</button>
-    <button id="UpdBtn">Update</button>
-    <button id = "DelBtn">Delete</button>
+  <button id="insFeedback">Insert</button>
+  <button id = "selFeedback">Select</button>
+  <button id="updFeedback">Update</button>
+  <button id = "delFeedback">Delete</button>
+  <hr-->
 
-    <script type="module">
-        // Import the functions you need from the SDKs you need
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
-        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-analytics.js";
-        // TODO: Add SDKs for Firebase products that you want to use
-        // https://firebase.google.com/docs/web/setup#available-libraries
+  <!--header>List image</header>
+  <label>ID</label><input id="listImg_id" type="number"><br><br>
+  <label>Name</label><input id="listImg_name" type="text"><br><br>
+  <label>Image</label><input id="listImg_image" type="text"><br><br>
+
+  <button id="insListImg">Insert</button>
+  <button id = "selListImg">Select</button>
+  <button id="updListImg">Update</button>
+  <button id = "delListImg">Delete</button>
+  <hr-->
+  
+  <!--header>Product</header>
+  <label>ID</label><input id="product_id" type="number"><br><br>
+  <label>Name</label><input id="product_name" type="text"><br><br>
+  <label>Price</label><input id="product_price" type="number"><br><br>
+  <label>Discount</label><input id="product_discount" type="number"><br><br>
+  <label>Size</label><input id="product_size" type="number"><br><br>
+  <label>Picture</label><input id="product_picture" type="text"><br><br>
+  <label>Description</label><input id="product_description" type="text"><br><br>
+  <label>Detail</label><input id="product_detail" type="text"><br><br>
+  <label>Created at</label><input id="product_creAt" type="datetime"><br><br>
+  <label>Updated at</label><input id="product_updAt" type="datetime"><br><br>
+  <label>Category id</label><input id="product_cateId" type="text"><br><br>
+  <label>Image id</label><input id="product_imgId" type="text"><br><br>
+
+  <button id="insProduct">Insert</button>
+  <button id = "selProduct">Select</button>
+  <button id="updProduct">Update</button>
+  <button id = "delProduct">Delete</button>
+  <hr-->
+
+  <!--header>Orders</header>
+  <label>ID</label><input id="orders_id" type="number"><br><br>
+  <label>Full name</label><input id="oders_fullname" type="text"><br><br>
+  <label>Email</label><input id="orders_email" type="text"><br><br>
+  <label>Phone</label><input id="orders_phone" type="number"><br><br>
+  <label>Address</label><input id="orders_address" type="number"><br><br>
+  <label>Note</label><input id="orders_note" type="text"><br><br>
+  <label>Order date</label><input id="orders_order_date" type="datetime"><br><br>
+  <label>Status</label><input id="orders_status" type="text"><br><br>
+  <label>Total</label><input id="orders_total" type="text"><br><br>
+  <label>User ID</label><input id="orders_user_id" type="text"><br><br>
+
+  <button id="insOrders">Insert</button>
+  <button id="selOrders">Select</button>
+  <button id="updOrders">Update</button>
+  <button id="delOrders">Delete</button>
+  <hr-->
+
+  <!--header>Order detail</header>
+  <label>ID</label><input id="orderDetail_id" type="number"><br><br>
+  <label>Price</label><input id="orderDetail_price" type="text"><br><br>
+  <label>Quantity</label><input id="orderDetail_quantity" type="text"><br><br>
+  <label>Total</label><input id="orderDetail_total" type="number"><br><br>
+  <label>Order id</label><input id="orderDetail_order_id" type="number"><br><br>
+  <label>Product id</label><input id="orderDetail_product_id" type="text"><br><br>
+
+  <button id="insOrderDetail">Insert</button>
+  <button id="selOrderDetail">Select</button>
+  <button id="updOrderDetail">Update</button>
+  <button id="delOrderDetail">Delete</button>
+  <hr-->
+
+  <!--header>User</header>
+  <label>ID</label><input id="user_id" type="number"><br><br>
+  <label>Fullname</label><input id="user_fullname" type="text"><br><br>
+  <label>Phone</label><input id="user_phone" type="text"><br><br>
+  <label>Address</label><input id="user_address" type="number"><br><br>
+  <label>Password</label><input id="user_password" type="number"><br><br>
+  <label>Role ID</label><input id="user_role_id" type="text"><br><br>
+  <label>Created date</label><input id="user_created_date" type="text"><br><br>
+  <label>Updated date</label><input id="user_updated_date" type="text"><br><br>
+
+
+  <button id="insUser">Insert</button>
+  <button id="selUser">Select</button>
+  <button id="updUser">Update</button>
+  <button id="delUser">Delete</button>
+  <hr-->
+
+  <!--header>Category</header>
+  <label>ID</label><input id="category_id" type="number"><br><br>
+  <label>Name</label><input id="category_name" type="text"><br><br>
+
+  <button id="insCategory">Insert</button>
+  <button id="selCategory">Select</button>
+  <button id="updCategory">Update</button>
+  <button id="delCategory">Delete</button>
+  <hr-->
+
+  <header>Role</header>
+  <label>ID</label><input id="role_id" type="number"><br><br>
+  <label>Name</label><input id="role_name" type="text"><br><br>
+
+  <button id="insRole">Insert</button>
+  <button id="selRole">Select</button>
+  <button id="updRole">Update</button>
+  <button id="delRole">Delete</button>
+  <hr-->
+
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-analytics.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
       
-        // Your web app's Firebase configuration
-        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-        const firebaseConfig = {
-          apiKey: "AIzaSyDDOUEj5ZXHt_TvN10dbyj5Yg3xX1T5fus",
-          authDomain: "demosoftwaretechnology.firebaseapp.com",
-          databaseURL: "https://demosoftwaretechnology-default-rtdb.firebaseio.com",
-          projectId: "demosoftwaretechnology",
-          storageBucket: "demosoftwaretechnology.appspot.com",
-          messagingSenderId: "375046175781",
-          appId: "1:375046175781:web:0d1bfac1b8ca71234293cc",
-          measurementId: "G-120GXQ1F6L"
-        };
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+      apiKey: "AIzaSyDDOUEj5ZXHt_TvN10dbyj5Yg3xX1T5fus",
+      authDomain: "demosoftwaretechnology.firebaseapp.com",
+      databaseURL: "https://demosoftwaretechnology-default-rtdb.firebaseio.com",
+      projectId: "demosoftwaretechnology",
+      storageBucket: "demosoftwaretechnology.appspot.com",
+      messagingSenderId: "375046175781",
+      appId: "1:375046175781:web:0d1bfac1b8ca71234293cc",
+      measurementId: "G-120GXQ1F6L"
+    };
       
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const analytics = getAnalytics(app);
-
-        import{getDatabase, ref, get, set, child, update, remove}
-        from "https://www.gstatic.com/firebasejs/10.11.0/firebase-database.js"
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+    
+    import{getDatabase, ref, get, set, child, update, remove}
+    from "https://www.gstatic.com/firebasejs/10.11.0/firebase-database.js"
         
-        const db=getDatabase();
+    const db=getDatabase();
 
-        //****************************** Elements ************************************
-        var namebox=document.getElementById("Namebox")
-        var rollbox=document.getElementById("Rollbox")
-        var secbox=document.getElementById("Secbox")
-        var genbox=document.getElementById("Genbox")
+    /****************************** feedback Elements ************************************
+    var feedback_id=document.getElementById("feedback_id")
+    var feedback_fname=document.getElementById("feedback_fname")
+    var feedback_lname=document.getElementById("feedback_lname")
+    var feedback_email=document.getElementById("feedback_email")
+    var feedback_phone=document.getElementById("feedback_phone")
+    var feedback_title=document.getElementById("feedback_title")
+    var feedback_content=document.getElementById("feedback_content")
 
-        var insBtn = document.getElementById("InsBtn")
-        var selBtn = document.getElementById("SelBtn")
-        var updBtn = document.getElementById("UpdBtn")
-        var delBnt = document.getElementById("DelBtn")
+    var insFeedback = document.getElementById("insFeedback")
+    var selFeedback = document.getElementById("selFeedback")
+    var updFeedback = document.getElementById("updFeedback")
+    var delFeedback = document.getElementById("delFeedback")
 
-        //******************************* Insert data function ****************************
-        function InsertData(){
-          set(ref(db, "TheStudents/" + rollbox.value), {
-            NameOfStd: namebox.value,
-            RollNo: rollbox.value,
-            Section: secbox.value,
-            Gender: genbox.value
-          })
-          .then(()=>{
-            alert("data stored successfully");
-          })
-          .catch((error)=>{
-            alert("unsuccessful, error"+error);
-          });
+    //******************************* Insert feedback function ****************************
+    function InsertFeedback(){
+      set(ref(db, "Feedback/" + feedback_id.value), {
+        ID: feedback_id.value,
+        firstName: feedback_fname.value,
+        lastName: feedback_lname.value,
+        email: feedback_email.value,
+        phone: feedback_phone.value,
+        title: feedback_title.value,
+        content: feedback_content.value
+      })
+      .then(()=>{
+        alert("data stored successfully");
+      })
+      .catch((error)=>{
+        alert("unsuccessful, error"+error);
+      });
+    }
+
+    //********************** select feedback function ************************
+    function SelectFeedback(){
+      const dbref=ref(db);
+      get(child(dbref, "Feedback/"+ feedback_id.value)).then((snapshot)=>{
+        if(snapshot.exists()){
+          feedback_fname.value=snapshot.val().firstName;
+          feedback_lname.value=snapshot.val().lastName;
+          feedback_email.value=snapshot.val().email;
+          feedback_phone.value=snapshot.val().phone;
+          feedback_title.value=snapshot.val().title;
+          feedback_content.value=snapshot.val().content;
         }
-
-        //********************** select data function ************************
-        function SelectData(){
-          const dbref=ref(db);
-          get(child(dbref, "TheStudents/"+ rollbox.value)).then((snapshot)=>{
-            if(snapshot.exists()){
-              namebox.value=snapshot.val().NameOfStd;
-              secbox.value=snapshot.val().Section;
-              genbox.value=snapshot.val().Gender;
-            }
-            else{
-              alert("No data found");
-            }
-          })
-          .catch((error)=>{
-            alert("unsuccessful, error"+error);
-          });
+        else{
+          alert("No data found");
         }
+      })
+      .catch((error)=>{
+        alert("unsuccessful, error"+error);
+      });
+    }
 
-        //******************** Update data ********************
-        function UpdateData(){
-          update(ref(db, "TheStudents/" + rollbox.value), {
-            NameOfStd: namebox.value,
-            Section: secbox.value,
-            Gender: genbox.value
-          })
-          .then(()=>{
-            alert("data stored successfully");
-          })
-          .catch((error)=>{
-            alert("unsuccessful, error"+error);
-          });
+    //******************** Update Feedback ********************
+    function UpdateFeedback(){
+      update(ref(db, "Feedback/" + feedback_id.value), {
+        firstName: feedback_fname.value,
+        lastName: feedback_lname.value,
+        email: feedback_email.value,
+        phone: feedback_phone.value,
+        title: feedback_title.value,
+        content: feedback_content.value
+      })
+      .then(()=>{
+        alert("data stored successfully");
+      })
+      .catch((error)=>{
+        alert("unsuccessful, error"+error);
+      });
+    }
+
+    //********************** delete Feedback *************************
+    function DeleteFeedback(){
+      remove(ref(db, "Feedback/" + feedback_id.value))
+      .then(()=>{
+        alert("data removed successfully");
+      })
+      .catch((error)=>{
+        alert("unsuccessful, error"+error);
+      });
+    }
+
+    //******************** Assign Events to feedback btns **********************
+    insFeedback.addEventListener('click', InsertFeedback);
+    selFeedback.addEventListener('click', SelectFeedback);
+    updFeedback.addEventListener('click', UpdateFeedback);
+    delFeedback.addEventListener('click', DeleteFeedback);*/
+
+    /************************** list image element *********************************************
+    var listImg_id=document.getElementById("listImg_id")
+    var listImg_name=document.getElementById("listImg_name")
+    var listImg_image=document.getElementById("listImg_image")
+
+    var insListImg=document.getElementById("insListImg")
+    var selListImg=document.getElementById("selListImg")
+    var updListImg=document.getElementById("updListImg")
+    var delListImg=document.getElementById("delListImg")
+    
+    //**************************** insert list image *****************************
+    function InsertListImage(){
+      set(ref(db, "ListImage/" + listImg_id.value), {
+        ID: listImg_id.value,
+        Name: listImg_name.value,
+        Image: listImg_image.value,
+      })
+      .then(()=>{
+        alert("data stored successfully");
+      })
+      .catch((error)=>{
+        alert("unsuccessful, error"+error);
+      });
+    }
+
+    //****************************** select list image ****************************
+    function SelectListImage(){
+      const dbref=ref(db);
+      get(child(dbref, "ListImage/"+ listImg_id.value)).then((snapshot)=>{
+        if(snapshot.exists()){
+          listImg_name.value=snapshot.val().Name;
+          listImg_image.value=snapshot.val().Image;
         }
-
-        //********************** delete data *************************
-        function DeleteData(){
-          remove(ref(db, "TheStudents/" + rollbox.value))
-          .then(()=>{
-            alert("data removed successfully");
-          })
-          .catch((error)=>{
-            alert("unsuccessful, error"+error);
-          });
+        else{
+          alert("No data found");
         }
+      })
+      .catch((error)=>{
+        alert("unsuccessful, error"+error);
+      });
+    }
 
-        //******************** Assign Events to btns **********************
-        insBtn.addEventListener('click', InsertData);
-        selBtn.addEventListener('click', SelectData);
-        updBtn.addEventListener('click', UpdateData);
-        delBnt.addEventListener('click', DeleteData);
+    //****************************** update list image *****************************
+    function UpdateListImage(){
+      update(ref(db, "ListImage/" + listImg_id.value), {
+        Name: listImg_name.value,
+        Image: listImg_image.value,
+      })
+      .then(()=>{
+        alert("data stored successfully");
+      })
+      .catch((error)=>{
+        alert("unsuccessful, error"+error);
+      });
+    }
 
-      </script>
+    //****************************** delete list image ***********************
+    function DeleteListImage(){
+      remove(ref(db, "ListImage/" + listImg_id.value))
+      .then(()=>{
+        alert("data removed successfully");
+      })
+      .catch((error)=>{
+        alert("unsuccessful, error"+error);
+      });
+    }
+
+    //******************** Assign Events to list image btns **********************
+    insListImg.addEventListener('click', InsertListImage);
+    selListImg.addEventListener('click', SelectListImage);
+    updListImg.addEventListener('click', UpdateListImage);
+    delListImg.addEventListener('click', DeleteListImage);*/
+    
+    /****************************** product Elements ************************************
+    var product_id=document.getElementById("product_id")
+    var product_name=document.getElementById("product_name")
+    var product_price=document.getElementById("product_price")
+    var product_discount=document.getElementById("product_discount")
+    var product_size=document.getElementById("product_size")
+    var product_picture=document.getElementById("product_picture")
+    var product_description=document.getElementById("product_description")
+    var product_detail=document.getElementById("product_detail")
+    var product_creAt=document.getElementById("product_creAt")
+    var product_updAt=document.getElementById("product_updAt")
+    var product_cateId=document.getElementById("product_cateId")
+    var product_imgId=document.getElementById("product_imgId")
+
+    var insProduct = document.getElementById("insProduct")
+    var selProduct = document.getElementById("selProduct")
+    var updProduct = document.getElementById("updProduct")
+    var delProduct = document.getElementById("delProduct")
+
+    //******************************* insert product function ****************************
+    function InsertProduct(){
+      set(ref(db, "Product/" + product_id.value), {
+        ID: product_id.value,
+        name: product_name.value,
+        price: product_price.value,
+        discount: product_discount.value,
+        size: product_size.value,
+        picture: product_picture.value,
+        description: product_description.value,
+        detail: product_detail.value,
+        created_at: product_creAt.value,
+        update_at: product_updAt.value,
+        cate_id: product_cateId.value,
+        img_id: product_imgId.value
+      })
+      .then(()=>{
+        alert("data stored successfully");
+      })
+      .catch((error)=>{
+        alert("unsuccessful, error"+error);
+      });
+    }
+
+    //********************** select product function ************************
+    function SelectProduct(){
+      const dbref=ref(db);
+      get(child(dbref, "Product/"+ product_id.value)).then((snapshot)=>{
+        if(snapshot.exists()){
+          product_name.value=snapshot.val().name;
+          product_price.value=snapshot.val().price;
+          product_discount.value=snapshot.val().discount;
+          product_size.value=snapshot.val().size;
+          product_picture.value=snapshot.val().picture;
+          product_description.value=snapshot.val().description;
+          product_detail.value=snapshot.val().detail;
+          product_creAt.value=snapshot.val().created_at;
+          product_updAt.value=snapshot.val().update_at;
+          product_cateId.value=snapshot.val().cate_id;
+          product_imgId.value=snapshot.val().img_id;
+
+        }
+        else{
+          alert("No data found");
+        }
+      })
+      .catch((error)=>{
+        alert("unsuccessful, error"+error);
+      });
+    }
+
+    //******************** Update product ********************
+    function UpdateProduct(){
+      update(ref(db, "Product/" + product_id.value), {
+        name: product_name.value,
+        price: product_price.value,
+        discount: product_discount.value,
+        size: product_size.value,
+        picture: product_picture.value,
+        description: product_description.value,
+        detail: product_detail.value,
+        created_at: product_creAt.value,
+        update_at: product_updAt.value,
+        cate_id: product_cateId.value,
+        img_id: product_imgId.value
+      })
+      .then(()=>{
+        alert("data stored successfully");
+      })
+      .catch((error)=>{
+        alert("unsuccessful, error"+error);
+      });
+    }
+
+    //********************** delete product *************************
+    function DeleteProduct(){
+      remove(ref(db, "Product/" + product_id.value))
+      .then(()=>{
+        alert("data removed successfully");
+      })
+      .catch((error)=>{
+        alert("unsuccessful, error"+error);
+      });
+    }
+
+    //******************** Assign Events to product btns **********************
+    insProduct.addEventListener('click', InsertProduct);
+    selProduct.addEventListener('click', SelectProduct);
+    updProduct.addEventListener('click', UpdateProduct);
+    delProduct.addEventListener('click', DeleteProduct);*/
+
+    /****************************** orders Elements ************************************
+    var orders_id=document.getElementById("orders_id")
+    var orders_fullname=document.getElementById("orders_fullname")
+    var orders_email=document.getElementById("orders_email")
+    var orders_phone=document.getElementById("orders_phone")
+    var orders_address=document.getElementById("orders_address")
+    var orders_note=document.getElementById("orders_note")
+    var orders_order_date=document.getElementById("orders_order_date")
+    var orders_status=document.getElementById("orders_status")
+    var orders_total=document.getElementById("orders_total")
+    var orders_user_id=document.getElementById("orders_user_id")
+
+    var insOrders = document.getElementById("insOrders")
+    var selOrders = document.getElementById("selOrders")
+    var updOrders = document.getElementById("updOrders")
+    var delOrders = document.getElementById("delOrders")
+
+    //******************************* insert orders function ****************************
+    function InsertOrders(){
+      set(ref(db, "Orders/" + orders_id.value), {
+        ID: orders_id.value,
+        fullname: orders_fullname.value,
+        email: orders_email.value,
+        phone: orders_phone.value,
+        address: orders_address.value,
+        note: orders_note.value,
+        order_date: orders_order_date.value,
+        status: orders_status.value,
+        total: orders_total.value,
+        user_id: orders_user_id.value,
+      })
+      .then(()=>{
+        alert("data stored successfully");
+      })
+      .catch((error)=>{
+        alert("unsuccessful, error"+error);
+      });
+    }
+
+    //********************** select orders function ************************
+    function SelectOrders(){
+      const dbref=ref(db);
+      get(child(dbref, "Orders/"+ orders_id.value)).then((snapshot)=>{
+        if(snapshot.exists()){
+          orders_fullname.value=snapshot.val().fullname;
+          orders_email.value=snapshot.val().email;
+          orders_phone.value=snapshot.val().phone;
+          orders_address.value=snapshot.val().address;
+          orders_note.value=snapshot.val().note;
+          orders_order_date.value=snapshot.val().order_date;
+          orders_status.value=snapshot.val().status;
+          orders_total.value=snapshot.val().total;
+          orders_user_id.value=snapshot.val().user_id;
+        }
+        else{
+          alert("No data found");
+        }
+      })
+      .catch((error)=>{
+        alert("unsuccessful, error"+error);
+      });
+    }
+
+    //******************** Update orders ********************
+    function UpdateOrders(){
+      update(ref(db, "Orders/" + orders_id.value), {
+        fullname: orders_fullname.value,
+        email: orders_email.value,
+        phone: orders_phone.value,
+        address: orders_address.value,
+        note: orders_note.value,
+        order_date: orders_order_date.value,
+        status: orders_status.value,
+        total: orders_total.value,
+        user_id: orders_user_id.value,
+      })
+      .then(()=>{
+        alert("data stored successfully");
+      })
+      .catch((error)=>{
+        alert("unsuccessful, error"+error);
+      });
+    }
+
+    //********************** delete product *************************
+    function DeleteOrders(){
+      remove(ref(db, "Orders/" + orders_id.value))
+      .then(()=>{
+        alert("data removed successfully");
+      })
+      .catch((error)=>{
+        alert("unsuccessful, error"+error);
+      });
+    }
+
+    //******************** Assign Events to product btns **********************
+    insOrders.addEventListener('click', InsertOrders);
+    selOrders.addEventListener('click', SelectOrders);
+    updOrders.addEventListener('click', UpdateOrders);
+    delOrders.addEventListener('click', DeleteOrders);*/
+    
+    /****************************** order detail Elements ************************************
+    var orderDetail_id=document.getElementById("orderDetail_id")
+    var orderDetail_price=document.getElementById("orderDetail_price")
+    var orderDetail_quantity=document.getElementById("orderDetail_quantity")
+    var orderDetail_total=document.getElementById("orderDetail_total")
+    var orderDetail_order_id=document.getElementById("orderDetail_order_id")
+    var orderDetail_product_id=document.getElementById("orderDetail_product_id")
+
+    var insOrderDetail = document.getElementById("insOrderDetail")
+    var selOrderDetail = document.getElementById("selOrdersDetail")
+    var updOrderDetail = document.getElementById("updOrdersDetail")
+    var delOrderDetail = document.getElementById("delOrdersDetail")
+
+    //******************************* insert orders function ****************************
+    function InsertOrderDetail(){
+      set(ref(db, "OrderDetail/" + orderDetail_id.value), {
+        ID: orderDetail_id.value,
+        price: orderDetail_price.value,
+        quantity: orderDetail_quantity.value,
+        total: orderDetail_total.value,
+        orders_id: orderDetail_order_id.value,
+        product_id: orderDetail_product_id.value,
+      })
+      .then(()=>{
+        alert("data stored successfully");
+      })
+      .catch((error)=>{
+        alert("unsuccessful, error"+error);
+      });
+    }
+
+    //********************** select orders function ************************
+    function SelectOrderDetail(){
+      const dbref=ref(db);
+      get(child(dbref, "OrderDetail/"+ orderDetail_id.value)).then((snapshot)=>{
+        if(snapshot.exists()){
+          orderDetail_price.value=snapshot.val().price;
+          orderDetail_quantity.value=snapshot.val().quantity;
+          orderDetail_total.value=snapshot.val().total;
+          orderDetail_order_id.value=snapshot.val().order_id;
+          orderDetail_product_id.value=snapshot.val().orderDetail_product_id;
+        }
+        else{
+          alert("No data found");
+        }
+      })
+      .catch((error)=>{
+        alert("unsuccessful, error"+error);
+      });
+    }
+
+    //******************** Update orders ********************
+    function UpdateOrderDetail(){
+      update(ref(db, "OrderDetail/" + orderDetail_id.value), {
+        price: orderDetail_price.value,
+        quantity: orderDetail_quantity.value,
+        total: orderDetail_total.value,
+        orders_id: orderDetail_order_id.value,
+        product_id: orderDetail_product_id.value,
+      })
+      .then(()=>{
+        alert("data stored successfully");
+      })
+      .catch((error)=>{
+        alert("unsuccessful, error"+error);
+      });
+    }
+
+    //********************** delete product *************************
+    function DeleteOrderDetail(){
+      remove(ref(db, "OrderDetail/" + orderDetail_id.value))
+      .then(()=>{
+        alert("data removed successfully");
+      })
+      .catch((error)=>{
+        alert("unsuccessful, error"+error);
+      });
+    }
+
+    //******************** Assign Events to product btns **********************
+    insOrderDetail.addEventListener('click', InsertOrderDetail);
+    selOrderDetail.addEventListener('click', SelectOrderDetail);
+    updOrderDetail.addEventListener('click', UpdateOrderDetail);
+    delOrderDetail.addEventListener('click', DeleteOrderDetail);*/
+
+    /****************************** user Elements ************************************
+    var user_id=document.getElementById("user_id")
+    var user_fullname=document.getElementById("user_fullname")
+    var user_phone=document.getElementById("user_phone=document")
+    var user_address=document.getElementById("user_address")
+    var user_password=document.getElementById("user_password")
+    var user_role_id=document.getElementById("user_role_id")
+    var user_created_date=document.getElementById("user_created_date")
+    var user_updated_date=document.getElementById("user_updated_date")
+
+    var insUser = document.getElementById("insUser")
+    var selUser = document.getElementById("selUser")
+    var updUser = document.getElementById("updUser")
+    var delUser = document.getElementById("delUser")
+
+    //******************************* insert user function ****************************
+    function InsertUser(){
+      set(ref(db, "User/" + user_id.value), {
+        ID: user_id.value,
+        fullname: user_fullname.value,
+        phone: user_phone.value,
+        address: user_address.value,
+        password: user_password.value,
+        role_id: user_role_id.value,
+        created_date: user_created_date.value,
+        updated_date: user_updated_date.value
+      })
+      .then(()=>{
+        alert("data stored successfully");
+      })
+      .catch((error)=>{
+        alert("unsuccessful, error"+error);
+      });
+    }
+
+    //********************** select user function ************************
+    function SelectUser(){
+      const dbref=ref(db);
+      get(child(dbref, "User/"+ user_id.value)).then((snapshot)=>{
+        if(snapshot.exists()){
+          user_fullname.value=snapshot.val().fullname;
+          user_phone.value=snapshot.val().phone;
+          user_address.value=snapshot.val().address;
+          user_password.value=snapshot.val().password;
+          user_role_id.value=snapshot.val().role_id;
+          user_created_date.value=snapshot.val().created_date;
+          user_updated_date.value=snapshot.val().updated_date;
+        }
+        else{
+          alert("No data found");
+        }
+      })
+      .catch((error)=>{
+        alert("unsuccessful, error"+error);
+      });
+    }
+
+    //******************** Update user ********************
+    function UpdateUser(){
+      update(ref(db, "User/" + user_id.value), {
+        fullname: user_fullname.value,
+        phone: user_phone.value,
+        address: user_address.value,
+        password: user_password.value,
+        role_id: user_role_id.value,
+        created_date: user_created_date.value,
+        updated_date: user_updated_date.value
+      })
+      .then(()=>{
+        alert("data stored successfully");
+      })
+      .catch((error)=>{
+        alert("unsuccessful, error"+error);
+      });
+    }
+
+    //********************** delete user *************************
+    function DeleteUser(){
+      remove(ref(db, "User/" + user_id.value))
+      .then(()=>{
+        alert("data removed successfully");
+      })
+      .catch((error)=>{
+        alert("unsuccessful, error"+error);
+      });
+    }
+
+    //******************** Assign Events to user buttons **********************
+    insOrderDetail.addEventListener('click', InsertOrderDetail);
+    selOrderDetail.addEventListener('click', SelectOrderDetail);
+    updOrderDetail.addEventListener('click', UpdateOrderDetail);
+    delOrderDetail.addEventListener('click', DeleteOrderDetail);*/
+
+    /************************** category element *********************************************
+    var category_id=document.getElementById("category_id")
+    var category_name=document.getElementById("category_name")
+
+    var insCategory=document.getElementById("insCategory")
+    var selCategory=document.getElementById("selCategory")
+    var updCategory=document.getElementById("updCategory")
+    var delCategory=document.getElementById("delCategory")
+    
+    //**************************** insert list image *****************************
+    function InsertCategory(){
+      set(ref(db, "Category/" + category_id.value), {
+        ID: category_id.value,
+        Name: category_name.value,
+      })
+      .then(()=>{
+        alert("data stored successfully");
+      })
+      .catch((error)=>{
+        alert("unsuccessful, error"+error);
+      });
+    }
+
+    //****************************** select list image ****************************
+    function SelectCategory(){
+      const dbref=ref(db);
+      get(child(dbref, "Category/"+ category_id.value)).then((snapshot)=>{
+        if(snapshot.exists()){
+          category_name.value=snapshot.val().Name;
+        }
+        else{
+          alert("No data found");
+        }
+      })
+      .catch((error)=>{
+        alert("unsuccessful, error"+error);
+      });
+    }
+
+    //****************************** update list image *****************************
+    function UpdateCategory(){
+      update(ref(db, "Category/" + category_id.value), {
+        Name: category_name.value,
+      })
+      .then(()=>{
+        alert("data stored successfully");
+      })
+      .catch((error)=>{
+        alert("unsuccessful, error"+error);
+      });
+    }
+
+    //****************************** delete list image ***********************
+    function DeleteCategory(){
+      remove(ref(db, "Category/" + category_id.value))
+      .then(()=>{
+        alert("data removed successfully");
+      })
+      .catch((error)=>{
+        alert("unsuccessful, error"+error);
+      });
+    }
+
+    //******************** Assign Events to list image btns **********************
+    insCategory.addEventListener('click', InsertCategory);
+    selCategory.addEventListener('click', SelectCategory);
+    updCategory.addEventListener('click', UpdateCategory);
+    delCategory.addEventListener('click', DeleteCategory);*/
+    
+    //************************** role element *********************************************
+    var role_id=document.getElementById("role_id")
+    var role_name=document.getElementById("role_name")
+
+    var insRole=document.getElementById("insRole")
+    var selRole=document.getElementById("selRole")
+    var updRole=document.getElementById("updRole")
+    var delRole=document.getElementById("delRole")
+    
+    //**************************** insert list image *****************************
+    function InsertRole(){
+      set(ref(db, "Role/" + role_id.value), {
+        ID: role_id.value,
+        Name: role_name.value,
+      })
+      .then(()=>{
+        alert("data stored successfully");
+      })
+      .catch((error)=>{
+        alert("unsuccessful, error"+error);
+      });
+    }
+
+    //****************************** select list image ****************************
+    function SelectRole(){
+      const dbref=ref(db);
+      get(child(dbref, "Role/"+ role_id.value)).then((snapshot)=>{
+        if(snapshot.exists()){
+          role_name.value=snapshot.val().Name;
+        }
+        else{
+          alert("No data found");
+        }
+      })
+      .catch((error)=>{
+        alert("unsuccessful, error"+error);
+      });
+    }
+
+    //****************************** update list image *****************************
+    function UpdateRole(){
+      update(ref(db, "Role/" + role_id.value), {
+        Name: role_id.value,
+      })
+      .then(()=>{
+        alert("data stored successfully");
+      })
+      .catch((error)=>{
+        alert("unsuccessful, error"+error);
+      });
+    }
+
+    //****************************** delete list image ***********************
+    function DeleteRole(){
+      remove(ref(db, "Role/" + role_id.value))
+      .then(()=>{
+        alert("data removed successfully");
+      })
+      .catch((error)=>{
+        alert("unsuccessful, error"+error);
+      });
+    }
+
+    //******************** Assign Events to list image btns **********************
+    insRole.addEventListener('click', InsertRole);
+    selRole.addEventListener('click', SelectRole);
+    updRole.addEventListener('click', UpdateRole);
+    delRole.addEventListener('click', DeleteRole);
+    
+  </script>
 </body>
 </html>
