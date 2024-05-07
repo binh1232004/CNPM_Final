@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
 }
 .popup__body{
     position: absolute;
@@ -9,7 +10,25 @@
     top: 50%;
     -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
-    background-color: red;
+    /* background-color: red; */
     z-index: 999;
-    padding: 32px;
+    padding: 2rem;
+    width: 38%;
+}
+.popup__title{
+    font-family: 'Oswald', sans-serif;
+    font-size: 31px;
+    font-weight: 700;
+}
+.popup__interestText{
+    margin-top: 0.7rem;
+    margin-bottom: 0.3rem;
+}
+.popup__interestImg{
+    display: flex;
+    justify-content: space-between;
+}
+.popup__interestImg > img{
+    height: 28%;
+    width:  28%;
 }
