@@ -13,7 +13,8 @@
     /* background-color: red; */
     z-index: 999;
     padding: 2rem;
-    width: 38%;
+    max-width: 560px;
+    width: 70vw;
 }
 .popup__title{
     font-family: 'Oswald', sans-serif;
@@ -30,5 +31,25 @@
 }
 .popup__interestImg > img{
     height: 28%;
-    width:  28%;
+    width:  31%;
+}
+.popup__siginAuthenticate {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    border-radius: 0.25rem;
+    text-align: center;
+    border-width: 1px solid #ccc;
+    cursor: pointer;
+    text-align: center;
+}
+.popup__img{
+    display:  inline-block;
+}
+.popup__img > img{
+    width: 3rem;
+    height: 3rem;
+    object-fit: contain;
+    padding: 0.6rem;
 }
