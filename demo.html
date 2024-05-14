@@ -16,7 +16,7 @@
     </style>
 </head>
 <body>
-  <!--header>Feedback</header>
+  <header>Feedback</header>
   <label>ID</label> <input id = "feedback_id" type="number"><br><br>
   <label>First name</label> <input id="feedback_fname" type="text"><br><br>
   <label>Last name</label> <input id="feedback_lname" type="text"><br><br>
@@ -29,9 +29,9 @@
   <button id = "selFeedback">Select</button>
   <button id="updFeedback">Update</button>
   <button id = "delFeedback">Delete</button>
-  <hr-->
+  <hr>
 
-  <!--header>List image</header>
+  <header>List image</header>
   <label>ID</label><input id="listImg_id" type="number"><br><br>
   <label>Name</label><input id="listImg_name" type="text"><br><br>
   <label>Image</label><input id="listImg_image" type="text"><br><br>
@@ -40,9 +40,9 @@
   <button id = "selListImg">Select</button>
   <button id="updListImg">Update</button>
   <button id = "delListImg">Delete</button>
-  <hr-->
+  <hr>
   
-  <!--header>Product</header>
+  <header>Product</header>
   <label>ID</label><input id="product_id" type="number"><br><br>
   <label>Name</label><input id="product_name" type="text"><br><br>
   <label>Price</label><input id="product_price" type="number"><br><br>
@@ -60,11 +60,11 @@
   <button id = "selProduct">Select</button>
   <button id="updProduct">Update</button>
   <button id = "delProduct">Delete</button>
-  <hr-->
+  <hr>
 
-  <!--header>Orders</header>
+  <header>Orders</header>
   <label>ID</label><input id="orders_id" type="number"><br><br>
-  <label>Full name</label><input id="oders_fullname" type="text"><br><br>
+  <label>Full name</label><input id="orders_fullname" type="text"><br><br>
   <label>Email</label><input id="orders_email" type="text"><br><br>
   <label>Phone</label><input id="orders_phone" type="number"><br><br>
   <label>Address</label><input id="orders_address" type="number"><br><br>
@@ -78,9 +78,9 @@
   <button id="selOrders">Select</button>
   <button id="updOrders">Update</button>
   <button id="delOrders">Delete</button>
-  <hr-->
+  <hr>
 
-  <!--header>Order detail</header>
+  <header>Order detail</header>
   <label>ID</label><input id="orderDetail_id" type="number"><br><br>
   <label>Price</label><input id="orderDetail_price" type="text"><br><br>
   <label>Quantity</label><input id="orderDetail_quantity" type="text"><br><br>
@@ -92,9 +92,9 @@
   <button id="selOrderDetail">Select</button>
   <button id="updOrderDetail">Update</button>
   <button id="delOrderDetail">Delete</button>
-  <hr-->
+  <hr>
 
-  <!--header>User</header>
+  <header>User</header>
   <label>ID</label><input id="user_id" type="number"><br><br>
   <label>Fullname</label><input id="user_fullname" type="text"><br><br>
   <label>Phone</label><input id="user_phone" type="text"><br><br>
@@ -109,9 +109,9 @@
   <button id="selUser">Select</button>
   <button id="updUser">Update</button>
   <button id="delUser">Delete</button>
-  <hr-->
+  <hr>
 
-  <!--header>Category</header>
+  <header>Category</header>
   <label>ID</label><input id="category_id" type="number"><br><br>
   <label>Name</label><input id="category_name" type="text"><br><br>
 
@@ -119,7 +119,7 @@
   <button id="selCategory">Select</button>
   <button id="updCategory">Update</button>
   <button id="delCategory">Delete</button>
-  <hr-->
+  <hr>
 
   <header>Role</header>
   <label>ID</label><input id="role_id" type="number"><br><br>
@@ -129,7 +129,7 @@
   <button id="selRole">Select</button>
   <button id="updRole">Update</button>
   <button id="delRole">Delete</button>
-  <hr-->
+  <hr>
 
   <script type="module">
     // Import the functions you need from the SDKs you need
@@ -160,7 +160,7 @@
         
     const db=getDatabase();
 
-    /****************************** feedback Elements ************************************
+    //****************************** feedback Elements ************************************
     var feedback_id=document.getElementById("feedback_id")
     var feedback_fname=document.getElementById("feedback_fname")
     var feedback_lname=document.getElementById("feedback_lname")
@@ -247,9 +247,9 @@
     insFeedback.addEventListener('click', InsertFeedback);
     selFeedback.addEventListener('click', SelectFeedback);
     updFeedback.addEventListener('click', UpdateFeedback);
-    delFeedback.addEventListener('click', DeleteFeedback);*/
+    delFeedback.addEventListener('click', DeleteFeedback);
 
-    /************************** list image element *********************************************
+    //************************** list image element *********************************************
     var listImg_id=document.getElementById("listImg_id")
     var listImg_name=document.getElementById("listImg_name")
     var listImg_image=document.getElementById("listImg_image")
@@ -320,9 +320,9 @@
     insListImg.addEventListener('click', InsertListImage);
     selListImg.addEventListener('click', SelectListImage);
     updListImg.addEventListener('click', UpdateListImage);
-    delListImg.addEventListener('click', DeleteListImage);*/
+    delListImg.addEventListener('click', DeleteListImage);
     
-    /****************************** product Elements ************************************
+    //****************************** product Elements ************************************
     var product_id=document.getElementById("product_id")
     var product_name=document.getElementById("product_name")
     var product_price=document.getElementById("product_price")
@@ -430,9 +430,9 @@
     insProduct.addEventListener('click', InsertProduct);
     selProduct.addEventListener('click', SelectProduct);
     updProduct.addEventListener('click', UpdateProduct);
-    delProduct.addEventListener('click', DeleteProduct);*/
+    delProduct.addEventListener('click', DeleteProduct);
 
-    /****************************** orders Elements ************************************
+    //****************************** orders Elements ************************************
     var orders_id=document.getElementById("orders_id")
     var orders_fullname=document.getElementById("orders_fullname")
     var orders_email=document.getElementById("orders_email")
@@ -531,9 +531,9 @@
     insOrders.addEventListener('click', InsertOrders);
     selOrders.addEventListener('click', SelectOrders);
     updOrders.addEventListener('click', UpdateOrders);
-    delOrders.addEventListener('click', DeleteOrders);*/
+    delOrders.addEventListener('click', DeleteOrders);
     
-    /****************************** order detail Elements ************************************
+    //****************************** order detail Elements ************************************
     var orderDetail_id=document.getElementById("orderDetail_id")
     var orderDetail_price=document.getElementById("orderDetail_price")
     var orderDetail_quantity=document.getElementById("orderDetail_quantity")
@@ -542,9 +542,9 @@
     var orderDetail_product_id=document.getElementById("orderDetail_product_id")
 
     var insOrderDetail = document.getElementById("insOrderDetail")
-    var selOrderDetail = document.getElementById("selOrdersDetail")
-    var updOrderDetail = document.getElementById("updOrdersDetail")
-    var delOrderDetail = document.getElementById("delOrdersDetail")
+    var selOrderDetail = document.getElementById("selOrderDetail")
+    var updOrderDetail = document.getElementById("updOrderDetail")
+    var delOrderDetail = document.getElementById("delOrderDetail")
 
     //******************************* insert orders function ****************************
     function InsertOrderDetail(){
@@ -572,8 +572,8 @@
           orderDetail_price.value=snapshot.val().price;
           orderDetail_quantity.value=snapshot.val().quantity;
           orderDetail_total.value=snapshot.val().total;
-          orderDetail_order_id.value=snapshot.val().order_id;
-          orderDetail_product_id.value=snapshot.val().orderDetail_product_id;
+          orderDetail_order_id.value=snapshot.val().orders_id;
+          orderDetail_product_id.value=snapshot.val().product_id;
         }
         else{
           alert("No data found");
@@ -616,12 +616,12 @@
     insOrderDetail.addEventListener('click', InsertOrderDetail);
     selOrderDetail.addEventListener('click', SelectOrderDetail);
     updOrderDetail.addEventListener('click', UpdateOrderDetail);
-    delOrderDetail.addEventListener('click', DeleteOrderDetail);*/
+    delOrderDetail.addEventListener('click', DeleteOrderDetail);
 
-    /****************************** user Elements ************************************
+    //****************************** user Elements ************************************
     var user_id=document.getElementById("user_id")
     var user_fullname=document.getElementById("user_fullname")
-    var user_phone=document.getElementById("user_phone=document")
+    var user_phone=document.getElementById("user_phone")
     var user_address=document.getElementById("user_address")
     var user_password=document.getElementById("user_password")
     var user_role_id=document.getElementById("user_role_id")
@@ -706,12 +706,12 @@
     }
 
     //******************** Assign Events to user buttons **********************
-    insOrderDetail.addEventListener('click', InsertOrderDetail);
-    selOrderDetail.addEventListener('click', SelectOrderDetail);
-    updOrderDetail.addEventListener('click', UpdateOrderDetail);
-    delOrderDetail.addEventListener('click', DeleteOrderDetail);*/
+    insUser.addEventListener('click', InsertUser);
+    selUser.addEventListener('click', SelectUser);
+    updUser.addEventListener('click', UpdateUser);
+    delUser.addEventListener('click', DeleteUser);
 
-    /************************** category element *********************************************
+    //************************** category element *********************************************
     var category_id=document.getElementById("category_id")
     var category_name=document.getElementById("category_name")
 
@@ -778,7 +778,7 @@
     insCategory.addEventListener('click', InsertCategory);
     selCategory.addEventListener('click', SelectCategory);
     updCategory.addEventListener('click', UpdateCategory);
-    delCategory.addEventListener('click', DeleteCategory);*/
+    delCategory.addEventListener('click', DeleteCategory);
     
     //************************** role element *********************************************
     var role_id=document.getElementById("role_id")
