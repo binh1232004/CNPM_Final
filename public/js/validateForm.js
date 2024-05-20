@@ -152,15 +152,6 @@ const validateFormSignUp = () => {
                 validateSignUp.username = true;
         }
     }
-    const isRightSignUp = () => {
-        for(const key in validateSignUp)
-            if(validateSignUp === false)
-                return false
-        return true
-    }
-    if(isRightSignUp){
-
-    }
 }
 btnSubmitSignUp.addEventListener('click', validateFormSignUp);
 
@@ -226,3 +217,17 @@ forgotpassbtnSubmit.addEventListener('click', () => {
     }
 
 });
+const correctValidateSignUp = () => {
+    for(const key in validateSignUp)
+        if(validateSignUp[key] === false)
+            return false
+    return true
+}
+export {correctValidateSignUp};
+export{
+    inputSignUpName,
+    inputSignUpPhoneNumber,
+    inputSignUpEmail,
+    inputSignUpPassword,
+    inputSignUpRePassword,
+}
