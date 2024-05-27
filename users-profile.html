@@ -1,0 +1,254 @@
+<!--
+    "..\..\CNPM_Final-DacLong\view\admin\users-profile.html"
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>user-profile</title>
+
+    
+
+    <script src="./js/all.js"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <link rel="stylesheet" href="./css/admin.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+    <script>addHeader()</script>
+    <main id="main" class="main">
+        <div class="pagetitle">
+        <h1>User Profile</h1>
+        </div><!-- End Page Title -->
+        <section class="section dashboard">
+        <div class="row">
+            <!-- Left side columns -->
+            <div class="col-lg-12">
+            <div class="row">
+                <div class="card">
+                    <div class="card-body">
+                    <h5 class="card-title">Chỉnh sửa</h5>
+                    <div class="row mb-3">
+                        <span class="col-sm-2 col-form-label">ID </span>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="user_id">
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <span class="col-sm-2 col-form-label">Full name </span>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="user_fullname">
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <span class="col-sm-2 col-form-label">Phone </span>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="user_phone">
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <span class="col-sm-2 col-form-label">Address </span>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="user_address">
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <span class="col-sm-2 col-form-label">Birth </span>
+                        <div class="col-sm-10">
+                            <input type="date" class="form-control" id="user_birth">
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <span class="col-sm-2 col-form-label">Create date </span>
+                        <div class="col-sm-10">
+                            <input type="date" class="form-control" id="user_create_date">
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <span class="col-sm-2 col-form-label">Update date </span>
+                        <div class="col-sm-10">
+                            <input type="date" class="form-control" id="user_update_date">
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <span class="col-sm-2 col-form-label">Role ID </span>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="user_role_id">
+                        </div>
+                    </div>
+
+                        <div class="text-center">
+                        <button class="btn btn-success" id="insUser">Thêm</button>
+                        <button class="btn btn-primary" id="selUser">Tìm</button>
+                        <button class="btn btn-danger" id="delUser">Xóa</button>
+                        <button class="btn btn-primary" id="updUser">Sửa</button>
+                        </div>
+                    </div>
+                </div>
+    
+                <!-- Recent Sales -->
+                <div class="card recent-sales overflow-auto">
+                    <div class="card-body">
+                    <h5 class="card-title">Danh sách</h5>
+                    <div id="StudentDiv">
+                        
+                    </div>
+                    <table class="table table-borderless datatable" id="">
+                        <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Full Name</th>
+                            <th scope="col">Phone</th>
+                            <th scope="col">Address</th>
+                            <th scope="col">Birth</th>
+                            <th scope="col">Create date</th>
+                            <th scope="col">Update date</th>
+                            <th scope="col">Role</th>
+                        </tr>
+                        </thead>
+                    
+                    </table>
+    
+                    </div>
+
+                </div><!-- End Recent Sales -->
+    
+    
+            </div>
+            </div><!-- End Left side columns -->
+    
+        </div>
+        </section>
+    
+    </main><!-- End #main -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/0d84cb8634.js" crossorigin="anonymous"></script>
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-analytics.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+          
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+          apiKey: "AIzaSyDDOUEj5ZXHt_TvN10dbyj5Yg3xX1T5fus",
+          authDomain: "demosoftwaretechnology.firebaseapp.com",
+          databaseURL: "https://demosoftwaretechnology-default-rtdb.firebaseio.com",
+          projectId: "demosoftwaretechnology",
+          storageBucket: "demosoftwaretechnology.appspot.com",
+          messagingSenderId: "375046175781",
+          appId: "1:375046175781:web:0d1bfac1b8ca71234293cc",
+          measurementId: "G-120GXQ1F6L"
+        };
+          
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        
+        import{getDatabase, ref, get, set, child, update, remove}
+        from "https://www.gstatic.com/firebasejs/10.11.0/firebase-database.js"
+            
+        const db=getDatabase();
+
+        //****************************** user Elements ************************************
+        var user_id=document.getElementById("user_id")
+        var user_fullname=document.getElementById("user_fullname")
+        var user_phone=document.getElementById("user_phone")
+        var user_address=document.getElementById("user_address")
+        var user_birth=document.getElementById("user_birth")
+        var user_role_id=document.getElementById("user_role_id")
+        var user_create_date=document.getElementById("user_create_date")
+        var user_update_date=document.getElementById("user_update_date")
+
+        var insUser = document.getElementById("insUser")
+        var selUser = document.getElementById("selUser")
+        var updUser = document.getElementById("updUser")
+        var delUser = document.getElementById("delUser")
+
+        //******************************* insert user function ****************************
+        function InsertUser(){
+        set(ref(db, "User/" + user_id.value), {
+            ID: user_id.value,
+            FullName: user_fullname.value,
+            Phone: user_phone.value,
+            Address: user_address.value,
+            Birth: user_birth.value,
+            Role: user_role_id.value,
+            CreateDate: user_create_date.value,
+            UpdateDate: user_update_date.value
+        })
+        .then(()=>{
+            alert("data stored successfully");
+        })
+        .catch((error)=>{
+            alert("unsuccessful, error"+error);
+        });
+        }
+
+        //********************** select user function ************************
+        function SelectUser(){
+        const dbref=ref(db);
+        get(child(dbref, "User/"+ user_id.value)).then((snapshot)=>{
+            if(snapshot.exists()){
+            user_fullname.value=snapshot.val().FullName;
+            user_phone.value=snapshot.val().Phone;
+            user_address.value=snapshot.val().Address;
+            user_birth.value=snapshot.val().Birth;
+            user_role_id.value=snapshot.val().Role;
+            user_create_date.value=snapshot.val().CreateDate;
+            user_update_date.value=snapshot.val().UpdatedDate;
+            }
+            else{
+            alert("No data found");
+            }
+        })
+        .catch((error)=>{
+            alert("unsuccessful, error"+error);
+        });
+        }
+
+        //******************** Update user ********************
+        function UpdateUser(){
+        update(ref(db, "User/" + user_id.value), {
+            FullName: user_fullname.value,
+            Phone: user_phone.value,
+            Address: user_address.value,
+            Birth: user_birth.value,
+            Role: user_role_id.value,
+            CreateDate: user_create_date.value,
+            UpdateDate: user_update_date.value
+        })
+        .then(()=>{
+            alert("data stored successfully");
+        })
+        .catch((error)=>{
+            alert("unsuccessful, error"+error);
+        });
+        }
+
+        //********************** delete user *************************
+        function DeleteUser(){
+        remove(ref(db, "User/" + user_id.value))
+        .then(()=>{
+            alert("data removed successfully");
+        })
+        .catch((error)=>{
+            alert("unsuccessful, error"+error);
+        });
+        }
+
+        //******************** Assign Events to user buttons **********************
+        insUser.addEventListener('click', InsertUser);
+        selUser.addEventListener('click', SelectUser);
+        updUser.addEventListener('click', UpdateUser);
+        delUser.addEventListener('click', DeleteUser);
+    </script>
+</body>
+</html>
