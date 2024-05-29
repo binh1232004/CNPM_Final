@@ -151,10 +151,12 @@ const monitorAuthState = async () => {
             signInDialog.close();
             strLoginUID = user.uid;
             console.log(strLoginUID);
+            isLoggin = true;
         } else {
             //for log out action
             //switch to main page
             //console.log(user);
+            isLoggin = false;
         }
     });
 };
