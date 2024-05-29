@@ -11,7 +11,7 @@ const stylesHandler = 'style-loader';
 
 const config = {
     entry: {
-        js: ['./public/js/validateForm.js','./public/js/addDataSignUp.js','./public/js/popUpAction.js', './firebase/firebaseConfig.js', './model/user.js'],
+        js: ['./public/js/validateForm.js','./public/js/addDataSignUp.js','./public/js/popUpAction.js', './firebase/firebaseLoginSignupForgetpass.js', './model/user.js'],
         css: './public/css/style.js'
     },
     output: {

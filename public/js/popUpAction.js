@@ -17,8 +17,7 @@ const signinSwitchForgotpass = document.getElementsByClassName('switch__forgot-p
 
 
 
-openSignin.addEventListener('click', () => signUpDialog.showModal());
-
+openSignin.addEventListener('click', () => signInDialog.showModal());
 closeBtnSignIn.addEventListener('click', () => signInDialog.close());
 closeBtnSignUp.addEventListener('click', () => signUpDialog.close());
 closeBtnForgotPass.addEventListener('click', () => forgotPassDialog.close());
@@ -64,3 +63,6 @@ signinSwitchForgotpass.addEventListener('click', () => {
 //    })
 //  );
 
+export {
+    signInDialog,
+}

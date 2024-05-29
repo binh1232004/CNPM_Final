@@ -44,13 +44,13 @@
                             Đăng nhập hoặc đăng ký (miễn phí)
                         </div>
                         <div class="signin__signinAuthenticate" style="margin: 1rem 0;">
-                            <button class=" signin__button--small" type="button">
+                            <button class=" signin__button--small Google-auth__sign-in" type="button">
                                 <span class="signin__img">
                                     <img src="https://mcdn.coolmate.me/image/September2023/mceclip1_21.png"
                                         alt="Goole authenticate">
                                 </span>
                             </button>
-                            <button class="signin__button--small" style="margin-left: 0.5rem;" type="button">
+                            <button class="signin__button--small Facebook-auth__sign-in" style="margin-left: 0.5rem;" type="button">
                                 <span class="signin__img">
                                     <img src="https://mcdn.coolmate.me/image/September2023/mceclip0_86.png"
                                         alt="Facebook authenticate">
@@ -61,7 +61,7 @@
                             </div>
                             <div class="login-area">
                                 <div class="login-area__group">
-                                    <input type="text" placeholder="Email/SĐT của bạn"
+                                    <input type="text" placeholder="Email của bạn"
                                         class="login-area__username signin__button--large">
                                     <span class="error-text error__username">Vui lòng nhập Email/SĐT của bạn</span>
                                 </div>
@@ -76,7 +76,7 @@
                                 <div class="capsLock-error">
                                     <i class="fa-solid fa-exclamation" style="color: red;"> </i>
                                 </div>
-                                <button class="login-area__submit signin__button--large" type="button">Đăng nhập</button>
+                                <button class="login-area__submit signin__button--large" type='button'>Đăng nhập</button>
                                 <div class="error__invalid-user">
                                     Xin lỗi, chúng tôi không tìm thấy tài khoản này trong hệ thống. Vui lòng đăng ký
                                     hoặc xác minh tài khoản.
@@ -122,12 +122,12 @@
                         </div>
                         <div class="signin__signinAuthenticate" style="margin: 1rem 0;">
                             <button class=" signin__button--small" type="button">
-                                <span class="signin__img">
+                                <span class="signin__img Google-auth__sign-up">
                                     <img src="https://mcdn.coolmate.me/image/September2023/mceclip1_21.png"
                                         alt="Goole authenticate">
                                 </span>
                             </button>
-                            <button class="signin__button--small" style="margin-left: 0.5rem;" type="button">
+                            <button class="signin__button--small Facebook-auth__sign-up" style="margin-left: 0.5rem;" type="button">
                                 <span class="signin__img">
                                     <img src="https://mcdn.coolmate.me/image/September2023/mceclip0_86.png"
                                         alt="Facebook authenticate">
@@ -177,6 +177,10 @@
                                     <span class="error-text error-signup__repassword">Vui lòng nhập lại mật khẩu</span>
                                 </div>
 
+                                <div class="error__invalid-user">
+                                    Xin lỗi, chúng tôi không tìm thấy tài khoản này trong hệ thống. Vui lòng đăng ký
+                                    hoặc xác minh tài khoản.
+                                </div>
                                 <button class="signup-area__submit signin__button--large" type="button">Đăng ký</button>
                                 <div class="area__switch">
                                     <a href="#" class="btn__switch switch__signin">Đăng nhập</a>
@@ -199,7 +203,7 @@
                         Cấp lại mật khẩu
                     </div>
 
-                    <input type="text" placeholder="Email/SĐT của bạn"
+                    <input type="text" placeholder="Email của bạn"
                         class="signin__button--large input__forgot-pass">
                     <span class="error-text error__forgot-pass">Vui lòng nhập Email/SĐT của bạn</span>
                     <button class="login-area__submit signin__button--large forgot-pass__submit" type="button">Kiểm tra</button>

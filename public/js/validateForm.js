@@ -1,6 +1,4 @@
-import { register } from '../../firebase/firebaseConfig.js'
 /***********************************************Form sign in validation ***********************************************/
-//BUG see in html
 const btnSubmit = document.getElementsByClassName('login-area__submit')[0];
 const inputUsername = document.getElementsByClassName('login-area__username')[0];
 const inputPassword = document.getElementsByClassName('login-area__password')[0];
@@ -9,6 +7,9 @@ const errorPassword = document.getElementsByClassName('error__password')[0];
 const capsLockText = document.getElementsByClassName('capsLock-error')[0];
 const errorInvalidUser = document.getElementsByClassName('error__invalid-user')[0];
 const passwordIcon = document.getElementsByClassName('password__icon')[0];
+const showLoginInvalidUser = () => {
+    errorInvalidUser.style.display='block';
+}
 const validateFormSignIn = () => {
     if (inputPassword.value.trim() === '') {
         errorPassword.style.display='block';
@@ -18,10 +19,6 @@ const validateFormSignIn = () => {
         errorUsername.style.display='block';
         inputUsername.style.outline='1px solid red';
     }
-    if(1)
-        errorInvalidUser.style.display='block';
-    else
-        errorInvalidUser.style.display='none';
 }
 btnSubmit.addEventListener('click', validateFormSignIn);
 
@@ -45,7 +42,7 @@ passwordIcon.addEventListener('click', function() {
 })
 
 /***********************************************Form sign up validation ***********************************************/
-const correctValidateSignUp = () => {
+const isCorrectValidateSignUp = () => {
     for(const key in validateSignUp)
         if(validateSignUp[key] === false)
             return false
@@ -65,7 +62,10 @@ const rightConditionPassword = {
     length: false
 }
 
-
+const showRightConditionPassword = () => {
+    for(const key in rightConditionPassword )
+        console.log(key,rightConditionPassword[key]);
+}
 const inputSignUpName = document.getElementsByClassName('signup__username')[0];
 const inputSignUpPhoneNumber = document.getElementsByClassName('signup__phone-number')[0];
 const inputSignUpEmail = document.getElementsByClassName('signup__email')[0];
@@ -159,10 +159,8 @@ const validateFormSignUp = () => {
                 validateSignUp.username = true;
         }
     }
-    if(correctValidateSignUp){
-        register(inputSignUpEmail.value, inputSignupPassword.value);
-    }
-
+    //showRightConditionPassword();
+    //console.log(isCorrectValidateSignUp());
 }
 btnSubmitSignUp.addEventListener('click', validateFormSignUp);
 
@@ -185,24 +183,24 @@ inputSignupPassword.onblur = () => {
 //validateFormSignUp in index 3 of validateSignUp will be based on value's item in rightCondition
 inputSignupPassword.addEventListener('keyup', () => { 
     const inputPassVal = inputSignupPassword.value;
-    const usingRegexValiPass = (regex, spanID, rightConditionItem) => {
+    const usingRegexValiPass = (regex, spanID, keyItem) => {
         if(regex.test(inputPassVal)){
             spanID.classList.remove("password__invalid");
             spanID.classList.add("password__valid");
-            rightConditionItem = true;
+            rightConditionPassword[keyItem] = true;
         }
         else{
             spanID.classList.add("password__invalid");
             spanID.classList.remove("password__valid");
-            rightConditionItem = false;
+            rightConditionPassword[keyItem] = false;
         }
     }
     let lowercase = /[a-z]/g;
     let uppercase = /[A-Z]/g;
     let isNumber = /[0-9]/g;
-    usingRegexValiPass(lowercase, letter, rightConditionPassword.letter);
-    usingRegexValiPass(uppercase, capital, rightConditionPassword.capital);
-    usingRegexValiPass(isNumber, number, rightConditionPassword.number);
+    usingRegexValiPass(lowercase, letter, 'letter');
+    usingRegexValiPass(uppercase, capital,'capital');
+    usingRegexValiPass(isNumber, number, 'number');
     if(inputPassVal.length >= 8){
          length.classList.remove("password__invalid");
          length.classList.add("password__valid");
@@ -219,20 +217,32 @@ inputSignupPassword.addEventListener('keyup', () => {
 const forgotpassbtnSubmit = document.getElementsByClassName('forgot-pass__submit')[0];
 const inputForgotpass = document.getElementsByClassName('input__forgot-pass')[0];
 const errorForgotpass = document.getElementsByClassName('error__forgot-pass')[0];
-forgotpassbtnSubmit.addEventListener('click', () => {
-    const inputVal = inputForgotpass.val;
-    if(!validateVietNamesePhoneNumber(inputVal) || !validateEmail(inputVal)){
+forgotpassbtnSubmit.addEventListener('click', (event) => {
+    const inputVal = inputForgotpass.value;
+    console.log(validateEmail(inputVal));
+    if(!validateEmail(inputVal)){
         errorForgotpass.style.display='block';
         inputForgotpass.style.outline='1px solid red';
 
     }
 
 });
-export {correctValidateSignUp};
 export{
+    btnSubmit,
+    inputUsername,
+    inputPassword,
+    showLoginInvalidUser,
+
+    inputSignUpEmail,
+    inputSignupPassword,
     inputSignUpName,
     inputSignUpPhoneNumber,
-    inputSignUpEmail,
-    inputSignUpPassword,
-    inputSignUpRePassword,
+    isCorrectValidateSignUp,
+    btnSubmitSignUp,
+    errorSignUpEmail,
+    errorInvalidUser,
+
+    inputForgotpass,
+    validateEmail
+
 }
