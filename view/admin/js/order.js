@@ -18,30 +18,42 @@ const app = initializeApp(firebaseConfig);
 import { getDatabase, ref, get, set, runTransaction, child, update, remove } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
 
 let OrderDetail = document.getElementById('order-detail');
+let ODID = document.getElementById('ODID');
+let Customer = document.getElementById('Customer');
+let Address = document.getElementById('Address');
+let Phone = document.getElementById('Phone');
+let getTotal = document.getElementById('total-full');
 
 const db = getDatabase();
 $(document).ready(function() {
     var dataSet = [];
     const dbref = ref(db);
-
+    let cusID;
     get(child(dbref, 'Orders')).then(async function(snapshot) {
         let promises = [];
 
         snapshot.forEach(function(childSnapshot) {
             var value = childSnapshot.val();
-
+            cusID = value.UserID;
             // Fetch user name asynchronously and push to dataSet once complete
             let userPromise = get(child(dbref, 'User/' + value.UserID)).then((userSnapshot) => {
                 let userName; // Default name
                 if(userSnapshot.exists()) {
                     userName = userSnapshot.val().FullName;
                 }
-
+                let checkStatus;
+                if(value.Status == true) {
+                    checkStatus = "Đã thanh toán";
+                }
+                else {
+                    checkStatus = "Chưa thanh toán";
+                }
                 dataSet.push([
                     value.OrderID,
                     userName,
                     value.OrderDate,
-                    value.Total
+                    value.Total,
+                    checkStatus
                 ]);
             }).catch((error) => {
                 console.error("Error fetching user data:", error);
@@ -59,10 +71,36 @@ $(document).ready(function() {
                 { title: "ID" },
                 { title: "Khách hàng" },
                 { title: "Ngày xuất hóa đơn" },
-                { title: "Thành tiền" }
+                { title: "Thành tiền" },
+                { title: "Trạng thái"}
             ],
             rowCallback: function(row, data) {
                 $(row).on('click', function() {
+                    $('#order-detail tbody').remove();
+                    ODID.innerText = data[0];
+                    var totalFull = 0;
+                    get(child(dbref, 'Orders/' + data[0])).then((snapshotOrder)=>{
+                        
+                        if(snapshotOrder.exists()) {
+                            get(child(dbref, 'User/' + snapshotOrder.val().UserID)).then((snapshotUser)=>{
+                                if(snapshotUser.exists()) {
+                                    Customer.innerText = snapshotUser.val().FullName;
+                                    Address.innerText = snapshotUser.val().Address;
+                                    Phone.innerText = snapshotUser.val().Phone;
+                                }
+                                else {
+                                    alert("User does not exist");
+                                }
+                            })
+                        }
+                        else {
+                            alert("Order does not exist");
+                        }
+                    })
+                    .catch((error)=>{
+                        alert("Unsuccessful");
+                        console.log(error);
+                    });
                     get(child(dbref, 'OrderDetail/' + data[0])).then((snapshot)=>{
                         if(snapshot.exists()) {
                             let details = snapshot.val();
@@ -79,6 +117,9 @@ $(document).ready(function() {
                                     if(snapshot.exists()) {
                                         namePro.innerHTML = snapshot.val().Name;
                                         price.innerHTML = snapshot.val().Price;
+                                        total.innerHTML = snapshot.val().Price * details[product];
+                                        totalFull += snapshot.val().Price * details[product];
+                                        getTotal.innerHTML = totalFull;
                                     }
                                     else {
                                         alert("Product does not exist");
@@ -90,10 +131,11 @@ $(document).ready(function() {
                                 })
 
                                 let tr = document.createElement('tr');
-                                tr.append(id, namePro, quantity, price);
+                                tr.append(id, namePro, quantity, price, total);
                                 let tbody = document.createElement('tbody');
                                 tbody.appendChild(tr);
                                 OrderDetail.append(tbody);
+                                
                             }
                         }
                         else {
@@ -103,50 +145,10 @@ $(document).ready(function() {
                     .catch((error)=>{
                         alert("Unsuccessful");
                         console.log(error);
-                    })
+                    });
+                    
                 });
             }
         });
     });
 });
-
-function GetOrderDetail(){
-    const dbref = ref(db);
-
-    get(child(dbref, 'User')).then((user)=>{
-        user.forEach(std => {
-            AddUserAsList(std);
-        });
-    })
-}
-
-function AddOrderDetail(std) {
-    let key = std.key;
-    let value = std.val();
-
-    let id = document.createElement('th');
-    let name = document.createElement('td');
-    let email = document.createElement('td');
-    let role = document.createElement('td');
-
-    id.innerHTML = key;
-    name.innerHTML = value.FullName;
-    email.innerHTML = value.Email;
-    if(value.Role == true) {
-        role.innerHTML = 'admin';
-        role.className = 'bg-success badge';
-    }
-    else {
-        role.innerHTML = 'user';
-        role.className = 'bg-warning badge';
-    }
-    role.style.marginTop = '5px';
-
-    let tr = document.createElement('tr');
-    tr.append(id, email, name, role);
-    tr.className = 'clickTable';
-    let tbody = document.createElement('tbody');
-    tbody.appendChild(tr);
-    listUser.append(tbody);
-    stdno++;
-}
