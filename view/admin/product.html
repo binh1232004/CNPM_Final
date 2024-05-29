@@ -5,15 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin</title>
 
-    <!-- <script type="module" src="./js/main.js" defer></script> -->
+    <!-- Firebase -->
     <script type="module" src="./js/product.js" defer></script>
     <script src="./js/all.js"></script>
     <!-- Google Fonts -->
     <link href="https://fonts.gstatic.com" rel="preconnect">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <!-- CSS -->
     <link rel="stylesheet" href="./css/admin.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.3/font/bootstrap-icons.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/range.css">
+    <!-- Vendor -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="vendor/quill/quill.snow.css" rel="stylesheet">
+    <link href="vendor/quill/quill.bubble.css" rel="stylesheet">
+    <link href="vendor/remixicon/remixicon.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/2.0.7/css/dataTables.bootstrap5.css">
+
+
 </head>
 
 <body>
@@ -24,7 +34,7 @@
         <h1>Sản phẩm</h1>
         </div><!-- End Page Title -->
     
-        <section class="section">
+        <section class="section dashboard">
         <div class="row">
             <div class="col-lg-12">
     
@@ -36,7 +46,7 @@
                 <div class="row mb-3">
                 <label for="inputText" class="col-sm-2 col-form-label">Mã sản phẩm</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="ProductID">
+                    <input type="text" class="form-control" id="ProductID" disabled>
                 </div>
                 </div>
                 <div class="row mb-3">
@@ -52,148 +62,198 @@
                 </div>
                 </div>
                 <div class="row mb-3">
-                <label for="inputText" class="col-sm-2 col-form-label">Size</label>
+                    <label for="inputNumber" class="col-sm-2 col-form-label">Khuyến mãi</label>
+                    <div class="col-sm-9">
+                        <!-- <input type="range" class="form-range" min="0" max="100" step="1" id="ProductPrice"> -->
+                        <div id="output" class="output ">
+                            0%
+                        </div>
+                        <input  type="range" min="0" max="100" value="0" step="5"  oninput="move()" id="range">
+                    </div>
+                    </div>
+                <div class="row mb-3">
+
+                <legend class="col-form-label col-sm-2 pt-0">Size</legend>
                 <div class="col-sm-10">
-                    <input type="number" class="form-control" id="ProductSize">
+
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input btn-check" type="checkbox" id="gridCheck1" autocomplete="off" name="size" value="XS">
+                        <label class="form-check-label btn btn-outline-primary" for="gridCheck1">
+                            XS
+                        </label>
+                    </div>
+
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input btn-check" type="checkbox" id="gridCheck2" autocomplete="off" name="size" value="S">
+                        <label class="form-check-label btn btn-outline-primary" for="gridCheck2">
+                            S
+                        </label>
+                    </div>
+
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input btn-check" type="checkbox" id="gridCheck3" autocomplete="off" name="size" value="M">
+                        <label class="form-check-label btn btn-outline-primary" for="gridCheck3">
+                            M
+                        </label>
+                    </div>
+
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input btn-check" type="checkbox" id="gridCheck4" autocomplete="off" name="size" value="L">
+                        <label class="form-check-label btn btn-outline-primary" for="gridCheck4">
+                            L
+                        </label>
+                    </div>
+
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input btn-check" type="checkbox" id="gridCheck5" autocomplete="off" name="size" value="XL">
+                        <label class="form-check-label btn btn-outline-primary" for="gridCheck5">
+                            XL
+                        </label>
+                    </div>
+
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input btn-check" type="checkbox" id="gridCheck6" autocomplete="off" name="size" value="2XL">
+                        <label class="form-check-label btn btn-outline-primary" for="gridCheck6">
+                            2XL
+                        </label>
+                    </div>
+
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input btn-check" type="checkbox" id="gridCheck7" autocomplete="off" name="size" value="3XL">
+                        <label class="form-check-label btn btn-outline-primary" for="gridCheck7">
+                            3XL
+                        </label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input btn-check" type="checkbox" id="gridCheck8" autocomplete="off" name="size" value="4XL">
+                        <label class="form-check-label btn btn-outline-primary" for="gridCheck8">
+                            4XL
+                        </label>
+                    </div>
+
                 </div>
                 </div>
                 <div class="row mb-3">
                     <label class="col-sm-2 col-form-label">Danh mục sản phẩm</label>
                     <div class="col-sm-10">
                         <select class="form-select" aria-label="Default select example" id="ProductCategory">
-                        <option selected>Chọn danh mục sản phẩm</option>
+                            <option selected>Chọn danh mục sản phẩm</option>
                         </select>
-                    </div>
-                    </div>
-                <div class="row mb-3">
-                    <label class="col-sm-2 col-form-label">Ranges</label>
-                    <div class="col-sm-10">
-                        <div>
-                        <label for="customRange1" class="form-label">Example range</label>
-                        <input type="range" class="form-range" id="customRange1">
-                        </div>
-                        <div>
-                        <label for="customRange2" class="form-label">Min and max with steps</label>
-                        <input type="range" class="form-range" min="0" max="5" step="0.5" id="customRange2">
-                        </div>
                     </div>
                     </div>
                 <div class="row mb-3">
                 <label for="inputNumber" class="col-sm-2 col-form-label">Hình ảnh</label>
                 <div class="col-sm-10">
-                    <input class="form-control" type="file" id="formFile">
+                    <input class="form-control" type="file" id="file-image" multiple required>
                 </div>
+                <!-- <label id="extlab"></label>
+                <label id="UpProgress"></label> -->
                 </div>
-                <div class="row mb-3">
-                <label for="inputDate" class="col-sm-2 col-form-label">Date</label>
-                <div class="col-sm-10">
-                    <p id="current-time" class="form-control"></p>
-                    <!-- <input type="date" class="form-control" id="current-time"> -->
+                <!-- <div class="row mb-3">
+                <label for="inputDate" class="col-sm-2 col-form-label">Ngày</label>
+                <div class="col-sm-10"> -->
+                    <!-- <p id="current-time" class="form-control"></p> -->
+                    <!-- <input type="date" class="form-control" id="current-time">
                 </div>
-                </div>
+                </div> -->
 
-                <div class="row mb-3">
+                <!-- <div class="row mb-3">
                 <label for="inputColor" class="col-sm-2 col-form-label">Color Picker</label>
                 <div class="col-sm-10">
                     <input type="color" class="form-control form-control-color" id="exampleColorInput" value="#4154f1" title="Choose your color">
                 </div>
-                </div>
+                </div> -->
 
                 <div class="row mb-3">
                 <label for="inputPassword" class="col-sm-2 col-form-label">Miêu tả</label>
                 <div class="col-sm-10">
-                    <textarea class="form-control" style="height: 100px"></textarea>
+                    <textarea class="form-control" style="height: 100px" id="Description"></textarea>
                 </div>
                 </div>
-
                 <div class="row mb-3">
+                    <label class="col-sm-2 col-form-label">Chi tiết</label>
+                    <div class="col-sm-10">
+                        <textarea class="tinymce-editor" id="Detail">
+                        
+                        </textarea>
+                    </div>
+                </div>
+                <!-- <div class="row mb-3">
                     <label for="inputPassword" class="col-sm-2 col-form-label">Chi tiết</label>
                     <div class="col-sm-10">
-                        <textarea class="form-control" style="height: 100px"></textarea>
+                        <textarea class="form-control" style="height: 100px" id="Detail"></textarea>
                     </div>
-                    </div>
-                <fieldset class="row mb-3">
-                <legend class="col-form-label col-sm-2 pt-0">Radios</legend>
-                <div class="col-sm-10">
-                    <div class="form-check">
-                    <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
-                    <label class="form-check-label" for="gridRadios1">
-                        First radio
-                    </label>
-                    </div>
-                    <div class="form-check">
-                    <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
-                    <label class="form-check-label" for="gridRadios2">
-                        Second radio
-                    </label>
-                    </div>
-                    <div class="form-check disabled">
-                    <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios" value="option" disabled>
-                    <label class="form-check-label" for="gridRadios3">
-                        Third disabled radio
-                    </label>
-                    </div>
-                </div>
-                </fieldset>
-                <div class="row mb-3">
-                <legend class="col-form-label col-sm-2 pt-0">Checkboxes</legend>
-                <div class="col-sm-10">
+                </div> -->
 
-                    <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="gridCheck1">
-                    <label class="form-check-label" for="gridCheck1">
-                        Example checkbox
-                    </label>
-                    </div>
-
-                    <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="gridCheck2" checked>
-                    <label class="form-check-label" for="gridCheck2">
-                        Example checkbox 2
-                    </label>
-                    </div>
-
-                </div>
-                </div>
-
-                <div class="row mb-3">
-                <label class="col-sm-2 col-form-label">Disabled</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" value="Read only / Disabled" disabled>
-                </div>
-                </div>
-
-                <div class="row mb-3">
-                <label class="col-sm-2 col-form-label">Multi Select</label>
-                <div class="col-sm-10">
-                    <select class="form-select" multiple aria-label="multiple select example">
-                    <option selected>Open this select menu</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
-                    </select>
-                </div>
-                </div>
-
-                <div class="row mb-3">
-                <label class="col-sm-2 col-form-label">Submit Button</label>
-                <div class="col-sm-10">
-                    <button type="submit" class="btn btn-primary">Submit Form</button>
-                </div>
+                <div class="text-center">
+                    <button class="btn btn-success" id="AddBtn">Thêm</button>
+                    <button class="btn btn-danger" id="DeleteBtn">Xóa</button>
+                    <button class="btn btn-primary" id="UpdateBtn">Sửa</button>
                 </div>
     
                 <!-- End General Form Elements -->
     
                 </div>
             </div>
-    
+            <div class="card recent-sales overflow-auto">
+                <div class="card-body">
+                <h5 class="card-title">Danh sách</h5>
+                <table class="table table-borderless datatable" id="listProduct">
+                    <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Sản phẩm</th>
+                        <th scope="col">Giá</th>
+                        <th scope="col">Ngày tạo</th>
+                        <th scope="col">Ngày sửa đổi</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
+
+                </div>
+
+            </div><!-- End Recent Sales -->
             </div>
         </div>
         </section>
+
     
     </main><!-- End #main -->
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="vendor/apexcharts/apexcharts.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="vendor/chart.js/chart.umd.js"></script>
+    <script src="vendor/echarts/echarts.min.js"></script>
+    <script src="vendor/quill/quill.js"></script>
+    <script src="vendor/tinymce/tinymce.min.js"></script>
+    <script src="vendor/php-email-form/validate.js"></script>
+    
     <script src="https://kit.fontawesome.com/0d84cb8634.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdn.datatables.net/2.0.7/js/dataTables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.datatables.net/2.0.7/js/dataTables.js"></script>
+    <script src="https://cdn.datatables.net/2.0.7/js/dataTables.bootstrap5.js"></script>
+    <script src="./js/tiny.js"></script>
+
+    <script>
+        // Khởi tạo trình soạn thảo TinyMCE
+        tinymce.init({
+            selector: 'textarea#Detail'
+        });
+        // $(document).ready(function () {
+        //     $('#listProduct').DataTable();
+        // });
+        function move(){
+            var x = document.getElementById("range").value;
+            var ele = document.getElementById("output");
+            ele.style.marginLeft= x + "%";
+            ele.innerHTML = x + "%";
+            
+        }
+    </script>
 </body>
 </html>

@@ -70,3 +70,56 @@ function DeleteData(){
 AddBtn.addEventListener('click', AddData);
 UpdBtn.addEventListener('click', UpdateData);
 DelBtn.addEventListener('click', DeleteData);
+
+// let listProduct = document.getElementById('listProduct');
+// // let tbody = document.createElement('tbody');
+// let tbodies = document.querySelectorAll('tbody');
+// let stdProduct = 1;
+
+// function GetProduct(){
+//     const dbref = ref(db);
+
+//     get(child(dbref, 'Product')).then((product)=>{
+//         product.forEach(std => {
+//             AddProductAsListItem(std);
+//         });
+//     })
+//     tbodies.forEach(tbody => {
+//         listProduct.append(tbody);
+//     });
+    
+    
+// }
+
+
+// function AddProductAsListItem(std) {
+//     let key = std.key;
+//     let value = std.val();
+
+//     let id = document.createElement('th');
+//     let name = document.createElement('td');
+//     let price = document.createElement('td');
+//     let createDate = document.createElement('td');
+//     let updateDate = document.createElement('td');
+
+//     id.innerHTML = value.ProductID;
+//     name.innerHTML = value.Name;
+//     price.innerHTML = value.Price;
+//     createDate.innerHTML = value.CreateDate;
+//     updateDate.innerHTML = value.UpdateDate;
+
+//     let tr = document.createElement('tr');
+//     tr.append(id, name, price, createDate, updateDate);
+//     tbodies.forEach(tbody => {
+//         tbody.appendChild(tr);
+//     });
+//     stdProduct++;
+// }
+
+// window.addEventListener('load', GetProduct);
+
+
+
+// let listProduct = document.getElementById('listProduct');
+// let tbody = document.createElement('tbody');
+// let tbodies = document.querySelectorAll('tbody');

@@ -96,9 +96,9 @@ h6 {
     font-family: "Nunito", sans-serif;
 }
 
-tbody tr:hover {
+/* tbody tr:hover {
     background-color: #a3abf5;
-}
+} */
 
 /*--------------------------------------------------------------
 # Main
@@ -1293,4 +1293,23 @@ tbody tr:hover {
     text-align: center;
     font-size: 13px;
     color: #012970;
+}
+
+tr.clickTable {
+    cursor: pointer;
+}
+
+tr {
+    cursor: pointer;
+}
+
+tr:hover {
+    background-color: #52c184;
+}
+
+/*--------------------------------------------------------------
+# range
+--------------------------------------------------------------*/
+.hovered {
+    background-color: #52c184 !important;
 }
