@@ -26,8 +26,11 @@ from "https://www.gstatic.com/firebasejs/10.11.0/firebase-database.js"
     
 const db=getDatabase();
 
-//************************************ get element ***********************************
+//****************************  USER_ID  ************************* */
 var user_id = "73V5gJcDMKMONcs9tguM71IgVi02";
+
+
+//************************************ get element ***********************************
 var user_fullname=document.getElementById("user_fullName")
 var user_phone=document.getElementById("user_phone")
 var user_address=document.getElementById("user_address")
