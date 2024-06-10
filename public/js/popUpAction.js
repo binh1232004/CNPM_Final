@@ -1,4 +1,6 @@
-const openSignin = document.getElementById('open');
+// const openSignin = document.getElementById('open');
+const openSignin = document.getElementById('index__log-in');
+console.log(1)
 
 const signInDialog = document.getElementById('dialog__sign-in');
 const signUpDialog = document.getElementById('dialog__sign-up');

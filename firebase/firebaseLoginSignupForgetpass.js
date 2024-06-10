@@ -1,4 +1,5 @@
-import { initializeApp } from 'firebase/app';
+// import { initializeApp } from 'firebase/app';
+import  { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import {
     btnSubmit,
     inputPassword,
@@ -14,6 +15,20 @@ import {
     inputForgotpass,
     validateEmail,
 } from '../public/js/validateForm.js';
+// import {
+//     getAuth,
+//     createUserWithEmailAndPassword,
+//     connectAuthEmulator,
+//     signInWithEmailAndPassword,
+//     onAuthStateChanged,
+//     sendEmailVerification,
+//     GoogleAuthProvider,
+//     signInWithPopup,
+//     FacebookAuthProvider,
+//     sendPasswordResetEmail,
+//     signOut,
+// } from 'firebase/auth';
+
 import {
     getAuth,
     createUserWithEmailAndPassword,
@@ -25,9 +40,11 @@ import {
     signInWithPopup,
     FacebookAuthProvider,
     sendPasswordResetEmail,
-} from 'firebase/auth';
+    signOut,
+} from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js';
 import { signInDialog } from '../public/js/popUpAction.js';
-import { getDatabase, set, ref } from 'firebase/database';
+// import { get,getDatabase, set, ref } from 'firebase/database';
+import { getDatabase, ref, get, set  } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
 const firebaseConfig = {
     apiKey: 'AIzaSyDDOUEj5ZXHt_TvN10dbyj5Yg3xX1T5fus',
     authDomain: 'demosoftwaretechnology.firebaseapp.com',
@@ -143,6 +160,14 @@ const createUser = async () => {
 };
 
 btnSubmitSignUp.addEventListener('click', createUser);
+const getRoleUser = async (userID) => {
+    const db = getDatabase();
+    const reference = ref(db, 'User/' + userID);
+    const snapshot = await get(reference);
+    if (snapshot.exists()) {
+        return snapshot.val().Role;
+    }
+};
 //
 const monitorAuthState = async () => {
     onAuthStateChanged(auth, user => {
@@ -150,13 +175,23 @@ const monitorAuthState = async () => {
         if (user) {
             signInDialog.close();
             strLoginUID = user.uid;
-            console.log(strLoginUID);
+            getRoleUser(strLoginUID).then((role) => {
+                if (role === true) {
+                    window.location.href = '../view/admin/category.html';
+                    console.log('admin');
+                } else {
+                    //redirect to main page
+                    // window.location.href = '../user/main.html';
+                }
+            });
             isLoggin = true;
+            console.log(strLoginUID)
         } else {
             //for log out action
             //switch to main page
             //console.log(user);
             isLoggin = false;
+            console.log('log out');
         }
     });
 };
@@ -267,3 +302,4 @@ const sendEmailResetPass = () => {
     }
 };
 //inputForgotpass.addEventListener('click', sendEmailResetPass);
+//logout
