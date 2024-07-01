@@ -215,6 +215,7 @@ const monitorAuthState = async () => {
             });
             isLoggin = true;
             console.log(strLoginUID);
+            localStorage.setItem('userID', strLoginUID);
             if (loginElement) {
                 loginElement.style.display = 'none';
             }

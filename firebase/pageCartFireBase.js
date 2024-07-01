@@ -1,7 +1,6 @@
 // Nhập các mô-đun cần thiết từ Firebase
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import { getDatabase, ref, onValue, update, remove, runTransaction, set } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
-import {strLoginUID} from './firebaseLoginSignupForgetpass.js';
 // Cấu hình ứng dụng Firebase
 const firebaseConfig = {
     apiKey: "AIzaSyDDOUEj5ZXHt_TvN10dbyj5Yg3xX1T5fus",
@@ -22,7 +21,7 @@ let status;
 
 // Hàm để đọc và kiểm tra dữ liệu từ Firebase
 function readCart() {
-    console.log("strLoginUID: ", strLoginUID);
+    console.log(localStorage.getItem('userID'));
     const cartRef = ref(database, 'User/4R0c5MSpzxMbesJNRb5bqXLN31z2/Cart');
 
     const unsubscribe = onValue(cartRef, (cartSnapshot) => {
