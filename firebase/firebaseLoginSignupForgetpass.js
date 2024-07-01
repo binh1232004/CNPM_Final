@@ -14,6 +14,7 @@ import {
     inputSignUpPhoneNumber,
     inputForgotpass,
     validateEmail,
+    forgotpassbtnSubmit,
 } from '../public/js/validateForm.js';
 // import {
 //     getAuth,
@@ -284,47 +285,47 @@ const btnSigninGoogle = document.getElementsByClassName(
 )[0];
 btnSigninGoogle.addEventListener('click', googleAuth);
 //**********************Facebook auth**********************
-const btnSignupFacebook = document.getElementsByClassName(
-    'Facebook-auth__sign-up',
-)[0];
-const providerFacebook = new FacebookAuthProvider();
-const facebookAuth = () => {
-    signInWithPopup(auth, providerFacebook)
-        .then((result) => {
-            // The signed-in user info.
-            console.log(1);
-            const user = result.user;
+// const btnSignupFacebook = document.getElementsByClassName(
+//     'Facebook-auth__sign-up',
+// )[0];
+// const providerFacebook = new FacebookAuthProvider();
+// const facebookAuth = () => {
+//     signInWithPopup(auth, providerFacebook)
+//         .then((result) => {
+//             // The signed-in user info.
+//             console.log(1);
+//             const user = result.user;
 
-            console.log(user);
-            // This gives you a Facebook Access Token. You can use it to access the Facebook API.
-            const credential =
-                FacebookAuthProvider.credentialFromResult(result);
-            const accessToken = credential.accessToken;
-            //write user data in database
-            const arrArgs = [
-                user.uid,
-                '',
-                '',
-                user.email,
-                user.displayName,
-                '',
-                false,
-                getCurrentDate(),
-            ];
-            isLoggin = true;
-            writeUserData(...arrArgs);
-        })
-        .catch((error) => {
-            // Handle Errors here.
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            // The email of the user's account used.
-            const email = error.customData.email;
-            // The AuthCredential type that was used.
-            const credential = FacebookAuthProvider.credentialFromError(error);
-        });
-};
-btnSignupFacebook.addEventListener('click', facebookAuth);
+//             console.log(user);
+//             // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+//             const credential =
+//                 FacebookAuthProvider.credentialFromResult(result);
+//             const accessToken = credential.accessToken;
+//             //write user data in database
+//             const arrArgs = [
+//                 user.uid,
+//                 '',
+//                 '',
+//                 user.email,
+//                 user.displayName,
+//                 '',
+//                 false,
+//                 getCurrentDate(),
+//             ];
+//             isLoggin = true;
+//             writeUserData(...arrArgs);
+//         })
+//         .catch((error) => {
+//             // Handle Errors here.
+//             const errorCode = error.code;
+//             const errorMessage = error.message;
+//             // The email of the user's account used.
+//             const email = error.customData.email;
+//             // The AuthCredential type that was used.
+//             const credential = FacebookAuthProvider.credentialFromError(error);
+//         });
+// };
+// btnSignupFacebook.addEventListener('click', facebookAuth);
 
 //**********************Forget password**********************
 const sendEmailResetPass = () => {
@@ -340,7 +341,7 @@ const sendEmailResetPass = () => {
             });
     }
 };
-//inputForgotpass.addEventListener('click', sendEmailResetPass);
+forgotpassbtnSubmit.addEventListener('click', sendEmailResetPass);
 //logout
 
 export {strLoginUID};

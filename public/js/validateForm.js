@@ -241,6 +241,7 @@ export{
     btnSubmitSignUp,
     errorSignUpEmail,
     errorInvalidUser,
+    forgotpassbtnSubmit,
 
     inputForgotpass,
     validateEmail
