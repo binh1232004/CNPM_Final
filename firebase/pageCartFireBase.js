@@ -17,12 +17,11 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 let cartItems = {};
-let status;
+let localStorageUserID = localStorage.getItem('userID');
 
 // Hàm để đọc và kiểm tra dữ liệu từ Firebase
 function readCart() {
-    console.log(localStorage.getItem('userID'));
-    const cartRef = ref(database, 'User/4R0c5MSpzxMbesJNRb5bqXLN31z2/Cart');
+    const cartRef = ref(database, `User/${localStorageUserID}/Cart`);
 
     const unsubscribe = onValue(cartRef, (cartSnapshot) => {
         const cartData = cartSnapshot.val();
@@ -226,7 +225,7 @@ function updatePrice(productId, amount) {
 }
 
 function updateAmountForFirebase(productId, amount) {
-    let path = `User/4R0c5MSpzxMbesJNRb5bqXLN31z2/Cart`;
+    let path = `User/${localStorageUserID}/Cart`;
     const orderDetailRef = ref(database, path);
 
     const updateData = {};
@@ -280,7 +279,7 @@ function deleteProductUI() {
 
 function deleteProductsForFirebase(productCheckboxes) {
     productCheckboxes.forEach(product => {
-        const productRef = ref(database, `User/4R0c5MSpzxMbesJNRb5bqXLN31z2/Cart/${product.ProductID}`);
+        const productRef = ref(database, `User/${localStorageUserID}/Cart/${product.ProductID}`);
         remove(productRef)
             .then(() => {
                 console.log(`Đã xóa sản phẩm ${product.ProductID} khỏi Firebase`);
@@ -380,7 +379,7 @@ function payAllProducts() {
 
                 showAlert("Thanh toán thành công.", "primary");
 
-                incrementAndCreateOrder(productCheckboxes, totalPrice, "4R0c5MSpzxMbesJNRb5bqXLN31z2")
+                incrementAndCreateOrder(productCheckboxes, totalPrice, `${localStorageUserID}`)
                 deleteProductsForFirebase(productCheckboxes)
             })
         }

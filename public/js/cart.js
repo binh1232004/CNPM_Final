@@ -1,7 +1,7 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
-import { getStorage, ref as sRef, uploadBytesResumable, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-storage.js";
-import { getDatabase, ref, get, child } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+// Nhập các mô-đun cần thiết từ Firebase
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import { getDatabase, ref, onValue, update, get, child } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
 
 import {
     signInDialog,
@@ -132,7 +132,26 @@ const addToCart = (product_id) => {
 };
 
 const addCartToMemory = () => {
-    localStorage.setItem('cart', JSON.stringify(carts));
+    let ID = localStorage.getItem('userID');
+    if (ID) {
+        localStorage.setItem('cart', JSON.stringify(carts));
+
+        // Lưu giỏ hàng vào Firebase
+        const cartRef = ref(db, `User/${ID}/Cart`);
+        let cartData = {};
+        carts.forEach(cartItem => {
+            cartData[cartItem.ProductID] = cartItem.quantity;
+        });
+
+        // Sử dụng update để cập nhật hoặc tạo mới giỏ hàng
+        update(cartRef, cartData)
+            .then(() => {
+                console.log('Giỏ hàng đã được lưu vào Firebase');
+            })
+            .catch((error) => {
+                console.error('Lỗi khi lưu giỏ hàng vào Firebase:', error);
+            });
+    }
 };
 
 const addCartToHTML = () => {
@@ -196,14 +215,45 @@ const changeQuantity = (product_id, type) => {
 
 RetData();
 
-document.addEventListener('DOMContentLoaded',function(){
+document.addEventListener('DOMContentLoaded', function() {
     let buttons = document.querySelectorAll('.checkOut');
-    buttons.forEach(function(button){
-        button.addEventListener('click', function(){
+    buttons.forEach(function(button) {
+        button.addEventListener('click', function() {
             window.location.href = 'pageCart.html';
         });
     });
+
+    let ID = localStorage.getItem('userID');
+
+    if (ID) {
+        const cartRef = ref(db, `User/${ID}/Cart`);
+        get(cartRef).then((snapshot) => {
+            if (snapshot.exists()) {
+                let firebaseCart = snapshot.val();
+                console.log(`firebaseCart: ${JSON.stringify(firebaseCart)}`);
+                
+                carts = []; // Clear local cart before updating
+                for (let productID in firebaseCart) {
+                    let quantity = firebaseCart[productID];
+                    carts.push({ ProductID: productID, quantity: quantity });
+                }
+                localStorage.setItem('cart', JSON.stringify(carts)); 
+                
+                console.log(`carts: ${JSON.stringify(carts)}`);
+                addCartToHTML();
+            } else {
+                console.log("No cart found in Firebase for this user.");
+                localStorage.setItem('cart', JSON.stringify(carts));
+                addCartToHTML();
+            }
+        }).catch((error) => {
+            console.error("Error fetching cart from Firebase:", error);
+        });
+    } else {
+        addCartToHTML();
+    }
 });
+
 
 document.getElementById('alternateRecipient').addEventListener('change', function () {
     let popup = document.getElementById('alternateRecipient-popup');
