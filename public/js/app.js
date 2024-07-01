@@ -25,44 +25,85 @@ let listProductHTML = document.getElementById('listProduct');
 
 
 
-function RetData(){
+// function RetData(){
     
+//     const dbref = ref(db);
+//     get(child(dbref, 'Product')).then(function(snapshot) {
+//         snapshot.forEach(function(childSnapshot) {
+//             var value = childSnapshot.val();
+//             // console.log(value);
+//             let newProduct = document.createElement('div');
+//             newProduct.classList.add('item');
+//             newProduct.dataset.id = value.ProductID;
+
+//             // let imagesHtml = '';
+//             // for (let key in value.Images) {
+//             //     if (value.Images.hasOwnProperty(key)) {
+//             //         let imgURL = value.Images[key].ImgURL.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+//             //         imagesHtml += `<img class="card-img-top" src="${imgURL}" alt="${value.Name}">`;
+//             //     }
+//             // }
+
+//              let imagesHtml = '';
+//             // if (value.Images) {
+//             //     Object.keys(value.Images).forEach(function(key) {
+//             //         let imgURL = value.Images[key].ImgURL.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+//             //         imagesHtml += `<img class="card-img-top" src="${imgURL}" alt="${value.Name}">`;
+//             //     });
+//             // }
+
+//             if (value.Images) {
+//                 const firstImageKey = Object.keys(value.Images)[0];
+//                 if (firstImageKey) {
+//                     let imgURL = value.Images[firstImageKey].ImgURL.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+//                     imagesHtml = `<img class="card-img-top" src="${imgURL}" alt="${value.Name}">`;
+//                 }
+//             }
+            
+
+//             newProduct.innerHTML =  `
+//                 <a href="detail.html?id=${value.ProductID}" class="img-responsive-wrap">
+//                     ${imagesHtml}
+//                 </a>
+//                 <h2>${value.Name}</h2>
+//                 <div class="price">${value.Price}đ</div>
+//                 <button class="addCart">
+//                     Thêm vào giỏ hàng
+//                 </button>
+                
+//             `;
+//             //console.log(value.Caterogy);
+//             listProductHTML.appendChild(newProduct);
+//         });
+//     })
+//     .catch((error)=>{
+//         alert("Unsuccessful");
+//         console.log(error);
+//     });
+// }
+
+function RetData(){
     const dbref = ref(db);
     get(child(dbref, 'Product')).then(function(snapshot) {
         snapshot.forEach(function(childSnapshot) {
             var value = childSnapshot.val();
-            // console.log(value);
+            
             let newProduct = document.createElement('div');
             newProduct.classList.add('item');
             newProduct.dataset.id = value.ProductID;
 
-            // let imagesHtml = '';
-            // for (let key in value.Images) {
-            //     if (value.Images.hasOwnProperty(key)) {
-            //         let imgURL = value.Images[key].ImgURL.replace(/</g, "&lt;").replace(/>/g, "&gt;");
-            //         imagesHtml += `<img class="card-img-top" src="${imgURL}" alt="${value.Name}">`;
-            //     }
-            // }
-
-             let imagesHtml = '';
-            // if (value.Images) {
-            //     Object.keys(value.Images).forEach(function(key) {
-            //         let imgURL = value.Images[key].ImgURL.replace(/</g, "&lt;").replace(/>/g, "&gt;");
-            //         imagesHtml += `<img class="card-img-top" src="${imgURL}" alt="${value.Name}">`;
-            //     });
-            // }
-
+            let imagesHtml = '';
             if (value.Images) {
                 const firstImageKey = Object.keys(value.Images)[0];
                 if (firstImageKey) {
                     let imgURL = value.Images[firstImageKey].ImgURL.replace(/</g, "&lt;").replace(/>/g, "&gt;");
-                    imagesHtml = `<img class="card-img-top" src="${imgURL}" alt="${value.Name}">`;
+                    // Add the default class to the img tag
+                    imagesHtml = `<img style="width: 230px;height: 350px;object-fit:cover" class="card-img-top img-default" src="${imgURL}" alt="${value.Name}">`;
                 }
             }
-            
 
             newProduct.innerHTML =  `
-                <a href="detail.html?id=${value.ProductID}">
+                <a href="detail.html?id=${value.ProductID}" >
                     ${imagesHtml}
                 </a>
                 <h2>${value.Name}</h2>
@@ -70,9 +111,8 @@ function RetData(){
                 <button class="addCart">
                     Thêm vào giỏ hàng
                 </button>
-                
             `;
-            //console.log(value.Caterogy);
+            
             listProductHTML.appendChild(newProduct);
         });
     })

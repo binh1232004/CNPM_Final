@@ -106,6 +106,7 @@ ul.navbar-nav li.nav-item:hover {
 
 .listProduct .item img {
     width: 90%;
+    height: 73%;
     filter: drop-shadow(0 5px 10px #555555);
 }
 
@@ -122,8 +123,8 @@ ul.navbar-nav li.nav-item:hover {
 }
 
 .listProduct .item h2 {
-    font-weight: 500;
-    font-size: large;
+    font-weight: 700;
+    font-size: 16.3px;
     margin-top: 20px;
 }
 
@@ -132,8 +133,9 @@ ul.navbar-nav li.nav-item:hover {
 }
 
 .listProduct .item .price {
-    letter-spacing: 5px;
-    font-size: small;
+    letter-spacing: 3px;
+    font-size: 15px;
+    font-weight: 400;
 }
 
 .listProduct .item button {
@@ -146,27 +148,33 @@ ul.navbar-nav li.nav-item:hover {
     cursor: pointer;
 }
 
+
+
+
+
+
+
+
+
 .cartTab {
-    width: 400px;
+    width: 455px;
     background-color: #353432;
     color: #eee;
     position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0; 
-    inset: 0 -400px 0 auto;
+    inset: 0 -455px 0 auto;
     display: grid;
     grid-template-rows: 70px 1fr 70px ;
     transition: .5s;
+    z-index: 10;
 }
 
 body.showCart .cartTab{
     inset: 0 0 0 auto;   
-    z-index: 1;
+    z-index: 10;
 }
 
 body.showCart .container {
-    transform: translateX(-185px);
+    transform: translateX(-225px);
     max-width: 75%;
 }
 
@@ -179,7 +187,6 @@ body.showCart .container {
 .cartTab .btn {
     display: grid;
     grid-template-columns: repeat(2,1fr);
-    padding: 0px;
 }
 
 .cartTab .btn button {
@@ -194,6 +201,10 @@ body.showCart .container {
     background-color: #eee;
 }
 
+.cartTab .listCart{
+    overflow: auto;
+}
+
 .cartTab .listCart .item img{
     width: 40%;
 }
@@ -205,6 +216,10 @@ body.showCart .container {
     text-align: center;
     align-items: center;
 }
+
+
+
+
 
 .listCart .quantity span {
     display: inline-block;
@@ -233,6 +248,11 @@ body.showCart .container {
     width: 0;
 }
 
+.img-default-size {
+    width: 230px;
+    height: 350px;
+    object-fit: cover;
+}
 
 
 

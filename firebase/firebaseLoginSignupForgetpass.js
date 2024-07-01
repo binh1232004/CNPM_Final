@@ -169,9 +169,38 @@ const getRoleUser = async (userID) => {
     }
 };
 //
+var hiddenlogin = document.getElementById('index__log-in');
+hiddenlogin.hidden;
+// document.getElementById("p2").style.color = "blue";
+// const monitorAuthState = async () => {
+//     onAuthStateChanged(auth, user => {
+//         // if user login
+//         if (user) {
+//             signInDialog.close();
+//             strLoginUID = user.uid;
+//             getRoleUser(strLoginUID).then((role) => {
+//                 if (role === true) {
+//                     window.location.href = '../view/admin/category.html';
+//                     console.log('admin');
+//                 } else {
+//                     //redirect to main page
+//                     // window.location.href = '../user/main.html';
+//                 }
+//             });
+//             isLoggin = true;
+//             console.log(strLoginUID)
+//         } else {
+//             //for log out action
+//             //switch to main page
+//             //console.log(user);
+//             isLoggin = false;
+//             console.log('log out');
+//         }
+//     });
+// };
 const monitorAuthState = async () => {
     onAuthStateChanged(auth, user => {
-        // if user login
+        const loginElement = document.getElementById('index__log-in');
         if (user) {
             signInDialog.close();
             strLoginUID = user.uid;
@@ -180,21 +209,26 @@ const monitorAuthState = async () => {
                     window.location.href = '../view/admin/category.html';
                     console.log('admin');
                 } else {
-                    //redirect to main page
+                    // Chuyển hướng đến trang chính
                     // window.location.href = '../user/main.html';
                 }
             });
             isLoggin = true;
-            console.log(strLoginUID)
+            console.log(strLoginUID);
+            if (loginElement) {
+                loginElement.style.display = 'none';
+            }
         } else {
-            //for log out action
-            //switch to main page
-            //console.log(user);
             isLoggin = false;
             console.log('log out');
+            if (loginElement) {
+                loginElement.style.display = 'block';
+            }
         }
     });
 };
+
+
 monitorAuthState();
 //**********************Google auth**********************
 //Sign up
@@ -225,7 +259,7 @@ const googleAuth = () => {
             isLoggin = true;
             writeUserData(...arrArgs);
             //redirect into login.html
-            window.location.href = '../user/login.html';
+            window.location.href = '.';
         })
         .catch((error) => {
             // Handle Errors here.
@@ -303,3 +337,5 @@ const sendEmailResetPass = () => {
 };
 //inputForgotpass.addEventListener('click', sendEmailResetPass);
 //logout
+
+export {strLoginUID};
