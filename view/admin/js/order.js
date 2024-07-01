@@ -41,19 +41,11 @@ $(document).ready(function() {
                 if(userSnapshot.exists()) {
                     userName = userSnapshot.val().FullName;
                 }
-                let checkStatus;
-                if(value.Status == true) {
-                    checkStatus = "Đã thanh toán";
-                }
-                else {
-                    checkStatus = "Chưa thanh toán";
-                }
                 dataSet.push([
                     value.OrderID,
                     userName,
                     value.OrderDate,
-                    value.Total,
-                    checkStatus
+                    value.Total
                 ]);
             }).catch((error) => {
                 console.error("Error fetching user data:", error);
@@ -71,8 +63,7 @@ $(document).ready(function() {
                 { title: "ID" },
                 { title: "Khách hàng" },
                 { title: "Ngày xuất hóa đơn" },
-                { title: "Thành tiền" },
-                { title: "Trạng thái"}
+                { title: "Thành tiền" }
             ],
             rowCallback: function(row, data) {
                 $(row).on('click', function() {
@@ -112,7 +103,8 @@ $(document).ready(function() {
                                 let price = document.createElement('td');
                                 let total = document.createElement('td');
                                 id.innerHTML = product;
-                                quantity.innerHTML = details[product];
+                                quantity.innerHTML = snapshot.val().Amount;
+                                // quantity.innerHTML = details[product];
                                 get(child(dbref, 'Product/' + product)).then((snapshot)=>{
                                     if(snapshot.exists()) {
                                         namePro.innerHTML = snapshot.val().Name;

@@ -157,3 +157,4 @@ function GetClick() {
 }
 
 window.addEventListener('load', GetClick);
+

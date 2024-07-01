@@ -70,7 +70,7 @@ function RetData(ID){
 
     get(child(dbref, 'Category/' + ID)).then((snapshot)=>{
         if(snapshot.exists()) {
-            CateName.value = snapshot.val(),
+            CateName.value = snapshot.val().CateName,
             CategoryID.value = snapshot.val().CateID
         }
         else {
@@ -106,7 +106,7 @@ function AddData(){
 
 function UpdateData(cateId){
     update(ref(db, 'Category/' + cateId), {
-        CateName: CateName.value
+        CateName: CateName.value,
     }).then(()=>{
         alert("Data Updated Successfully");
         location.reload();
