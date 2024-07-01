@@ -45,6 +45,7 @@ import {
 import { signInDialog } from '../public/js/popUpAction.js';
 // import { get,getDatabase, set, ref } from 'firebase/database';
 import { getDatabase, ref, get, set  } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+import { logout } from "./logout.js";
 const firebaseConfig = {
     apiKey: 'AIzaSyDDOUEj5ZXHt_TvN10dbyj5Yg3xX1T5fus',
     authDomain: 'demosoftwaretechnology.firebaseapp.com',
@@ -169,8 +170,7 @@ const getRoleUser = async (userID) => {
     }
 };
 //
-var hiddenlogin = document.getElementById('index__log-in');
-hiddenlogin.hidden;
+//create a button sign out in hiddenlogin
 // document.getElementById("p2").style.color = "blue";
 // const monitorAuthState = async () => {
 //     onAuthStateChanged(auth, user => {
@@ -198,9 +198,9 @@ hiddenlogin.hidden;
 //         }
 //     });
 // };
+const loginElement = document.getElementById('index__log-in');
 const monitorAuthState = async () => {
     onAuthStateChanged(auth, user => {
-        const loginElement = document.getElementById('index__log-in');
         if (user) {
             signInDialog.close();
             strLoginUID = user.uid;
@@ -217,13 +217,17 @@ const monitorAuthState = async () => {
             console.log(strLoginUID);
             localStorage.setItem('userID', strLoginUID);
             if (loginElement) {
-                loginElement.style.display = 'none';
+                loginElement.innerHTML = 'Đăng xuất'; 
+                loginElement.addEventListener('click', () => {
+                    logout('../index.html');
+                });
             }
         } else {
             isLoggin = false;
             console.log('log out');
+            localStorage.setItem('userID', null);
             if (loginElement) {
-                loginElement.style.display = 'block';
+                loginElement.innerHTML = 'Đăng nhập'; 
             }
         }
     });

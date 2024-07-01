@@ -27,7 +27,7 @@ from "https://www.gstatic.com/firebasejs/10.11.0/firebase-database.js"
 const db=getDatabase();
 
 //****************************  USER_ID  ************************* */
-var user_id = "73V5gJcDMKMONcs9tguM71IgVi02";
+var user_id = localStorage.getItem('userID');
 
 
 //************************************ get element ***********************************
@@ -51,7 +51,6 @@ document.addEventListener('DOMContentLoaded', function SelectUser(){
         user_email.value=snapshot.val().Email;
         user_birth.value=snapshot.val().Birth;
         user_createDate.value=snapshot.val().CreateDate;
-        alert(user_id);
         }
         else{
         alert("No data found");
