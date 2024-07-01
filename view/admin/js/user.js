@@ -156,5 +156,9 @@ function GetClick() {
     })
 }
 
+<<<<<<< HEAD
 window.addEventListener('load', GetClick);
 
+=======
+window.addEventListener('load', GetClick);
+>>>>>>> bd5c7d79634b7bf424f8f937561559a861954880

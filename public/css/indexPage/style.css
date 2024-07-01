@@ -156,11 +156,19 @@ ul.navbar-nav li.nav-item:hover {
 
 
 .cartTab {
+<<<<<<< HEAD
     width: 400px;
     background-color: #353432;
     color: #eee;
     position: fixed;
     inset: 0 -400px 0 auto;
+=======
+    width: 455px;
+    background-color: #353432;
+    color: #eee;
+    position: fixed;
+    inset: 0 -455px 0 auto;
+>>>>>>> bd5c7d79634b7bf424f8f937561559a861954880
     display: grid;
     grid-template-rows: 70px 1fr 70px ;
     transition: .5s;
@@ -173,7 +181,11 @@ body.showCart .cartTab{
 }
 
 body.showCart .container {
+<<<<<<< HEAD
     transform: translateX(-185px);
+=======
+    transform: translateX(-225px);
+>>>>>>> bd5c7d79634b7bf424f8f937561559a861954880
     max-width: 75%;
 }
 

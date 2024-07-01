@@ -70,7 +70,11 @@ function RetData(ID){
 
     get(child(dbref, 'Category/' + ID)).then((snapshot)=>{
         if(snapshot.exists()) {
+<<<<<<< HEAD
             CateName.value = snapshot.val().CateName,
+=======
+            CateName.value = snapshot.val(),
+>>>>>>> bd5c7d79634b7bf424f8f937561559a861954880
             CategoryID.value = snapshot.val().CateID
         }
         else {
@@ -106,7 +110,11 @@ function AddData(){
 
 function UpdateData(cateId){
     update(ref(db, 'Category/' + cateId), {
+<<<<<<< HEAD
         CateName: CateName.value,
+=======
+        CateName: CateName.value
+>>>>>>> bd5c7d79634b7bf424f8f937561559a861954880
     }).then(()=>{
         alert("Data Updated Successfully");
         location.reload();
