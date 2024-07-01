@@ -40,13 +40,13 @@ $(document).ready(function() {
                 let userName; // Default name
                 if(userSnapshot.exists()) {
                     userName = userSnapshot.val().FullName;
+                    dataSet.push([
+                        value.OrderID,
+                        userName,
+                        value.OrderDate,
+                        value.Total
+                    ]);
                 }
-                dataSet.push([
-                    value.OrderID,
-                    userName,
-                    value.OrderDate,
-                    value.Total
-                ]);
             }).catch((error) => {
                 console.error("Error fetching user data:", error);
             });
@@ -103,14 +103,14 @@ $(document).ready(function() {
                                 let price = document.createElement('td');
                                 let total = document.createElement('td');
                                 id.innerHTML = product;
-                                quantity.innerHTML = snapshot.val().Amount;
-                                // quantity.innerHTML = details[product];
+                                let productDetail = details[product];
+                                quantity.innerHTML = productDetail.Amount;
+                                total.innerHTML = productDetail.Total;
                                 get(child(dbref, 'Product/' + product)).then((snapshot)=>{
                                     if(snapshot.exists()) {
                                         namePro.innerHTML = snapshot.val().Name;
                                         price.innerHTML = snapshot.val().Price;
-                                        total.innerHTML = snapshot.val().Price * details[product];
-                                        totalFull += snapshot.val().Price * details[product];
+                                        totalFull += productDetail.Total;;
                                         getTotal.innerHTML = totalFull;
                                     }
                                     else {
