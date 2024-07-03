@@ -14,6 +14,7 @@ import {
     inputSignUpPhoneNumber,
     inputForgotpass,
     validateEmail,
+    forgotpassbtnSubmit
 } from '../public/js/validateForm.js';
 // import {
 //     getAuth,
@@ -141,7 +142,7 @@ const createUser = async () => {
                 false,
                 getCurrentDate(),
             ];
-            //writeUserData(...arrArgs);
+            writeUserData(...arrArgs);
             //send email verificatoin
             const sendEmail = await sendEmailVerification(userCredentials.user);
             let msg = 'An email verification link has been sent';
@@ -340,7 +341,7 @@ const sendEmailResetPass = () => {
             });
     }
 };
-//inputForgotpass.addEventListener('click', sendEmailResetPass);
+forgotpassbtnSubmit.addEventListener('click', sendEmailResetPass);
 //logout
 
 export {strLoginUID};
