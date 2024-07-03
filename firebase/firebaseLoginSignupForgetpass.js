@@ -206,7 +206,7 @@ const monitorAuthState = async () => {
             strLoginUID = user.uid;
             getRoleUser(strLoginUID).then((role) => {
                 if (role === true) {
-                    window.location.href = '../view/admin/category.html';
+                    window.location.href = '/CNPM_Final/view/admin/category.html';
                     console.log('admin');
                 } else {
                     // Chuyển hướng đến trang chính
@@ -219,7 +219,7 @@ const monitorAuthState = async () => {
             if (loginElement) {
                 loginElement.innerHTML = 'Đăng xuất'; 
                 loginElement.addEventListener('click', () => {
-                    logout('../index.html');
+                    logout('./');
                 });
             }
         } else {
