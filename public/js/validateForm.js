@@ -243,6 +243,7 @@ export{
     errorInvalidUser,
 
     inputForgotpass,
+    forgotpassbtnSubmit,
     validateEmail
 
 }
