@@ -70,8 +70,8 @@ function RetData(ID){
 
     get(child(dbref, 'Category/' + ID)).then((snapshot)=>{
         if(snapshot.exists()) {
-            CateName.value = snapshot.val(),
-            CategoryID.value = snapshot.val().CateID
+            CateName.value = snapshot.val().CateName,
+            CategoryID.value = ID
         }
         else {
             alert("Category does not exist");
