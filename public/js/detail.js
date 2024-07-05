@@ -1,6 +1,5 @@
-
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import { getDatabase, ref, get, child } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+import { getDatabase, ref, get } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
 
 // Firebase configuration
 const firebaseConfig = {
@@ -13,7 +12,6 @@ const firebaseConfig = {
     appId: "1:375046175781:web:0d1bfac1b8ca71234293cc",
     measurementId: "G-120GXQ1F6L"
 };
-
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
@@ -28,26 +26,12 @@ const productRef = ref(db, `Product/${productId}`);
 // Cart variables
 let listCartHTML = document.querySelector('.listCart');
 let iconCartSpan = document.querySelector('.icon-cart span');
-let iconCart = document.querySelector('.icon-cart');
-let closeBtn = document.querySelector('.cartTab .close');
 let body = document.querySelector('body');
 
 let listProducts = [];
-let carts = JSON.parse(localStorage.getItem('cart')) || [];
+let carts = [];
 
-// Show cart function
-const showCart = () => {
-    body.classList.add('showCart');
-}
 
-// Cart event listeners
-iconCart.addEventListener('click', () => {
-    body.classList.toggle('showCart');
-});
-
-closeBtn.addEventListener('click', () => {
-    body.classList.remove('showCart');
-});
 
 // Function to fetch and display product details
 function displayProductDetails() {
@@ -158,8 +142,9 @@ function displayProductDetails() {
                     alert('Vui lòng chọn kích thước.');
                 } else {
                     addToCart(productId);
-                    alert(`Sản phẩm được thêm vào giỏ hàng.`);
                     selectedSize.classList.remove('active');
+                    iconCartSpan.innerText = (parseInt(iconCartSpan.innerText) + 1).toString(); // Increment icon-cart
+                    alert(`Sản phẩm được thêm vào giỏ hàng.`);
                 }
             });
 
@@ -200,9 +185,8 @@ const updateCart = (product) => {
         carts[positionThisProductInCart].quantity += 1;
     }
 
-    addCartToMemory();
-    addCartToHTML();
-    showCart();
+     addCartToMemory();
+     addCartToHTML();
 };
 
 // Function to add cart to local storage
@@ -241,7 +225,7 @@ const addCartToHTML = () => {
             listCartHTML.appendChild(newCart);
         });
     }
-    iconCartSpan.innerText = totalQuantity;
+    iconCartSpan.innerText = totalQuantity.toString(); // Update icon-cart total
 };
 
 // Event listener for cart item quantity changes
@@ -270,45 +254,18 @@ const changeQuantity = (product_id, type) => {
         }
         addCartToMemory();
         addCartToHTML();
+        iconCartSpan.innerText = carts.reduce((total, cart) => total + cart.quantity, 0).toString(); // Update icon-cart total
     }
 };
 
-// thanh toan
+// Function to handle checkout (placeholder)
 document.addEventListener('DOMContentLoaded', function() {
     let buttons = document.querySelectorAll('.checkOut');
+
+    // Display error message immediately when the button is clicked
     buttons.forEach(function(button) {
         button.addEventListener('click', function() {
-            window.location.href = 'pageCart.html';
+            alert('Chức năng đang bảo trì. Vui lòng thử lại sau.');
         });
     });
-
-    let ID = localStorage.getItem('userID');
-
-    if (ID) {
-        const cartRef = ref(db, `User/${ID}/Cart`);
-        get(cartRef).then((snapshot) => {
-            if (snapshot.exists()) {
-                let firebaseCart = snapshot.val();
-                console.log(`firebaseCart: ${JSON.stringify(firebaseCart)}`);
-                
-                carts = []; // Clear local cart before updating
-                for (let productID in firebaseCart) {
-                    let quantity = firebaseCart[productID];
-                    carts.push({ ProductID: productID, quantity: quantity });
-                }
-                localStorage.setItem('cart', JSON.stringify(carts)); 
-                
-                console.log(`carts: ${JSON.stringify(carts)}`);
-                addCartToHTML();
-            } else {
-                console.log("No cart found in Firebase for this user.");
-                localStorage.setItem('cart', JSON.stringify(carts));
-                addCartToHTML();
-            }
-        }).catch((error) => {
-            console.error("Error fetching cart from Firebase:", error);
-        });
-    } else {
-        addCartToHTML();
-    }
 });
