@@ -43,7 +43,7 @@ import {
     sendPasswordResetEmail,
     signOut,
 } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js';
-import { signInDialog } from '../public/js/popUpAction.js';
+import { forgotPassDialog, signInDialog, signUpDialog } from '../public/js/popUpAction.js';
 // import { get,getDatabase, set, ref } from 'firebase/database';
 import { getDatabase, ref, get, set  } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
 import { logout } from "./logout.js";
@@ -153,6 +153,8 @@ const createUser = async () => {
             verifyUser.style.display = 'block';
             verifyUser.style.color = 'green';
             verifyUser.style.margin = '5px 14px';
+            signUpDialog.close();
+            signInDialog.showModal();
         }
     } catch (error) {
         errorSignUpEmail.style.display = 'block';
@@ -340,6 +342,8 @@ const sendEmailResetPass = () => {
                 console.log(error.message);
             });
     }
+    // forgotPassDialog.close();
+    // signInDialog.showModal();
 };
 forgotpassbtnSubmit.addEventListener('click', sendEmailResetPass);
 //logout
