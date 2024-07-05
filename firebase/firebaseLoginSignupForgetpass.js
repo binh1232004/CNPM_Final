@@ -153,7 +153,7 @@ const createUser = async () => {
             verifyUser.style.display = 'block';
             verifyUser.style.color = 'green';
             verifyUser.style.margin = '5px 14px';
-            signUpDialog.close();
+            logout('/CNPM_Final/index.html');
             signInDialog.showModal();
         }
     } catch (error) {
