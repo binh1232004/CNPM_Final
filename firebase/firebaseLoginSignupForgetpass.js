@@ -210,8 +210,10 @@ const monitorAuthState = async () => {
             getRoleUser(strLoginUID).then((role) => {
                 if (role === true) {
                     window.location.href = '/CNPM_Final/view/admin/category.html';
+                    localStorage.setItem('role', 'admin');
                     console.log('admin');
                 } else {
+                    localStorage.setItem('role', 'user');
                     // Chuyển hướng đến trang chính
                     // window.location.href = '../user/main.html';
                 }
@@ -226,6 +228,7 @@ const monitorAuthState = async () => {
                 });
             }
         } else {
+            localStorage.setItem('role', 'guest');
             isLoggin = false;
             console.log('log out');
             localStorage.setItem('userID', null);
