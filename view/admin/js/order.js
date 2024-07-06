@@ -28,7 +28,7 @@ const db = getDatabase();
 $(document).ready(function() {
     var dataSet = [];
     const dbref = ref(db);
-    let cusID;
+
     get(child(dbref, 'Orders')).then(async function(snapshot) {
         let promises = [];
 
@@ -40,21 +40,14 @@ $(document).ready(function() {
                 let userName; // Default name
                 if(userSnapshot.exists()) {
                     userName = userSnapshot.val().FullName;
+                    dataSet.push([
+                        value.OrderID,
+                        userName,
+                        value.OrderDate,
+                        value.Total
+                    ]);
                 }
-                let checkStatus;
-                if(value.Status == true) {
-                    checkStatus = "Đã thanh toán";
-                }
-                else {
-                    checkStatus = "Chưa thanh toán";
-                }
-                dataSet.push([
-                    value.OrderID,
-                    userName,
-                    value.OrderDate,
-                    value.Total,
-                    checkStatus
-                ]);
+
             }).catch((error) => {
                 console.error("Error fetching user data:", error);
             });
@@ -71,8 +64,8 @@ $(document).ready(function() {
                 { title: "ID" },
                 { title: "Khách hàng" },
                 { title: "Ngày xuất hóa đơn" },
-                { title: "Thành tiền" },
-                { title: "Trạng thái"}
+                { title: "Thành tiền" }
+
             ],
             rowCallback: function(row, data) {
                 $(row).on('click', function() {
@@ -112,13 +105,20 @@ $(document).ready(function() {
                                 let price = document.createElement('td');
                                 let total = document.createElement('td');
                                 id.innerHTML = product;
-                                quantity.innerHTML = details[product];
+
+                                let productDetail = details[product];
+                                quantity.innerHTML = productDetail.Amount;
+                                total.innerHTML = productDetail.Total;
+
+
                                 get(child(dbref, 'Product/' + product)).then((snapshot)=>{
                                     if(snapshot.exists()) {
                                         namePro.innerHTML = snapshot.val().Name;
                                         price.innerHTML = snapshot.val().Price;
-                                        total.innerHTML = snapshot.val().Price * details[product];
-                                        totalFull += snapshot.val().Price * details[product];
+                                        totalFull += productDetail.Total;
+
+                                        total.innerHTML = snapshot.val().Price * productDetail.Amount;
+
                                         getTotal.innerHTML = totalFull;
                                     }
                                     else {
