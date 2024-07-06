@@ -28,7 +28,7 @@ const db = getDatabase();
 $(document).ready(function() {
     var dataSet = [];
     const dbref = ref(db);
-
+    let cusID;
     get(child(dbref, 'Orders')).then(async function(snapshot) {
         let promises = [];
 
